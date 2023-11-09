@@ -75,6 +75,7 @@ void MainWindow::on_pb_serial_connect_toggled(bool checked) {
             delete COMPORT;
             close();
         }
+        COMPORT->flush();
         ui->pb_serial_connect->setText("Disconnect");
 
         connect(COMPORT, SIGNAL(readyRead()), this, SLOT(read_data()));
@@ -83,6 +84,7 @@ void MainWindow::on_pb_serial_connect_toggled(bool checked) {
         disconnect(COMPORT, SIGNAL(readyRead()), this, SLOT(read_data()));
         COMPORT->close();
         delete COMPORT;
+        COMPORT = nullptr;
         ui->pb_serial_connect->setText("Connect");
     }
 }
@@ -95,14 +97,50 @@ void MainWindow::on_pb_term_Stop_toggled(bool checked) {
     }
 }
 
-
 void MainWindow::on_pb_term_clear_clicked() {
     ui->pte_term->clear();
 }
 
-
-void MainWindow::on_le_term_textChanged(const QString &arg1) {
-    QByteArray text = arg1.toLatin1();
-    qInfo() << text;
+void MainWindow::on_pb_term_send_clicked() {
+    ui->pte_term->clear();
+    ui->cb_send->insertItem(0, ui->cb_send->currentText());
+    QApplication::processEvents();
+    if (COMPORT != nullptr) {
+    //    qInfo() << "send to GPS";
+        COMPORT->write(out_send.toLatin1());
+        COMPORT->flush();
+    }
+    QApplication::processEvents();
 }
 
+void MainWindow::on_cb_send_editTextChanged(const QString &arg1) {
+    QByteArray text = QString("PMTK").toLatin1() + arg1.toLatin1();
+    checksum = 0;
+    for (int var = 0; var < text.length(); ++var) {
+        checksum = checksum ^ text.at(var);
+    }
+    out_send = QString::number(checksum, 16);
+    ui->l_term_crc->setText("*" + out_send + "<CR><LF>");
+    out_send = "$" + text + "*" + out_send + "\r\n";
+    // qInfo() << out_send;
+}
+
+void MainWindow::on_bp_restart_hot_clicked() {
+    ui->cb_send->setEditText("101");
+    on_pb_term_send_clicked();
+}
+
+void MainWindow::on_bp_restart_warm_clicked() {
+    ui->cb_send->setEditText("102");
+    on_pb_term_send_clicked();
+}
+
+void MainWindow::on_bp_restart_cold_clicked() {
+    ui->cb_send->setEditText("103");
+    on_pb_term_send_clicked();
+}
+
+void MainWindow::on_bp_restart_full_clicked() {
+    ui->cb_send->setEditText("104");
+    on_pb_term_send_clicked();
+}

@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1024</width>
+    <width>1034</width>
     <height>768</height>
    </rect>
   </property>
@@ -124,7 +124,23 @@
         </widget>
        </item>
        <item>
-        <widget class="QLineEdit" name="le_term"/>
+        <widget class="QComboBox" name="cb_send">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="editable">
+          <bool>true</bool>
+         </property>
+         <property name="maxVisibleItems">
+          <number>15</number>
+         </property>
+         <property name="maxCount">
+          <number>15</number>
+         </property>
+        </widget>
        </item>
        <item>
         <widget class="QLabel" name="l_term_crc">
@@ -134,7 +150,7 @@
           </font>
          </property>
          <property name="text">
-          <string>*??[CK][LF]</string>
+          <string>*00&lt;CR&gt;&lt;LF&gt;</string>
          </property>
         </widget>
        </item>
@@ -204,13 +220,56 @@
      </item>
     </layout>
    </widget>
+   <widget class="QGroupBox" name="groupBox_3">
+    <property name="geometry">
+     <rect>
+      <x>900</x>
+      <y>19</y>
+      <width>121</width>
+      <height>157</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>Restart</string>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout">
+     <item>
+      <widget class="QPushButton" name="bp_restart_hot">
+       <property name="text">
+        <string>Hot Restart</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="bp_restart_warm">
+       <property name="text">
+        <string>Warm Restart</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="bp_restart_cold">
+       <property name="text">
+        <string>Cold Restart</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="bp_restart_full">
+       <property name="text">
+        <string>Full Cold Restart</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1024</width>
+     <width>1034</width>
      <height>21</height>
     </rect>
    </property>
