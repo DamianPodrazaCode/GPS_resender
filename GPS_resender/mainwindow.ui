@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1034</width>
+    <width>1067</width>
     <height>768</height>
    </rect>
   </property>
@@ -104,6 +104,12 @@
       <horstretch>0</horstretch>
       <verstretch>0</verstretch>
      </sizepolicy>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>640</width>
+      <height>420</height>
+     </size>
     </property>
     <property name="title">
      <string>Serial Terminal</string>
@@ -225,7 +231,7 @@
      <rect>
       <x>900</x>
       <y>0</y>
-      <width>121</width>
+      <width>141</width>
       <height>157</height>
      </rect>
     </property>
@@ -269,7 +275,7 @@
       <x>10</x>
       <y>100</y>
       <width>231</width>
-      <height>101</height>
+      <height>121</height>
      </rect>
     </property>
     <property name="title">
@@ -330,13 +336,20 @@
        </item>
       </layout>
      </item>
+     <item row="2" column="0">
+      <widget class="QLabel" name="l_api_q_fix_ctl">
+       <property name="text">
+        <string>Answer</string>
+       </property>
+      </widget>
+     </item>
     </layout>
    </widget>
    <widget class="QGroupBox" name="groupBox_5">
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>210</y>
+      <y>230</y>
       <width>231</width>
       <height>71</height>
      </rect>
@@ -410,13 +423,444 @@
      </layout>
     </widget>
    </widget>
+   <widget class="QGroupBox" name="groupBox_6">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>310</y>
+      <width>227</width>
+      <height>121</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>DGPS MODE</string>
+    </property>
+    <layout class="QGridLayout" name="gridLayout_4">
+     <item row="0" column="0">
+      <layout class="QHBoxLayout" name="horizontalLayout_5">
+       <item>
+        <widget class="QComboBox" name="cb_freq_2">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <item>
+          <property name="text">
+           <string>No DGPS source</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>RTCM</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>WASS</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="pb_set_freq_2">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="text">
+          <string>SET</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item row="1" column="0">
+      <widget class="QPushButton" name="pb_api_q_fix_ctl_2">
+       <property name="text">
+        <string>Query DGPS mode</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="0">
+      <widget class="QLabel" name="l_api_q_fix_ctl_2">
+       <property name="text">
+        <string>Answer</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QGroupBox" name="groupBox_7">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>440</y>
+      <width>227</width>
+      <height>121</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>SBAS</string>
+    </property>
+    <layout class="QGridLayout" name="gridLayout_5">
+     <item row="0" column="0">
+      <layout class="QHBoxLayout" name="horizontalLayout_6">
+       <item>
+        <widget class="QComboBox" name="cb_freq_3">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <item>
+          <property name="text">
+           <string>Disable</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Enable</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="pb_set_freq_3">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="text">
+          <string>SET</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item row="1" column="0">
+      <widget class="QPushButton" name="pb_api_q_fix_ctl_3">
+       <property name="text">
+        <string>Query SBAS enabled</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="0">
+      <widget class="QLabel" name="l_api_q_fix_ctl_3">
+       <property name="text">
+        <string>Answer</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QGroupBox" name="groupBox_8">
+    <property name="geometry">
+     <rect>
+      <x>900</x>
+      <y>170</y>
+      <width>141</width>
+      <height>291</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>NMEA Output</string>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout_2">
+     <item>
+      <widget class="QComboBox" name="cb_out_gll">
+       <item>
+        <property name="text">
+         <string>0 - GPGLL</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>1 - GPGLL</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>2 - GPGLL</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>3 - GPGLL</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>4 - GPGLL</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>5 - GPGLL</string>
+        </property>
+       </item>
+      </widget>
+     </item>
+     <item>
+      <widget class="QComboBox" name="cb_out_rmc">
+       <item>
+        <property name="text">
+         <string>0 - GPRMC</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>1 - GPRMC</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>2 - GPRMC</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>3 - GPRMC</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>4 - GPRMC</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>5 - GPRMC</string>
+        </property>
+       </item>
+      </widget>
+     </item>
+     <item>
+      <widget class="QComboBox" name="cb_out_vtg">
+       <item>
+        <property name="text">
+         <string>0 - GPVTG</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>1 - GPVTG</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>2 - GPVTG</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>3 - GPVTG</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>4 - GPVTG</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>5 - GPVTG</string>
+        </property>
+       </item>
+      </widget>
+     </item>
+     <item>
+      <widget class="QComboBox" name="cb_out_gga">
+       <item>
+        <property name="text">
+         <string>0 - GPGGA</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>1 - GPGGA</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>2 - GPGGA</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>3 - GPGGA</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>4 - GPGGA</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>5 - GPGGA</string>
+        </property>
+       </item>
+      </widget>
+     </item>
+     <item>
+      <widget class="QComboBox" name="cb_out_gsa">
+       <item>
+        <property name="text">
+         <string>0 - GPGSA</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>1 - GPGSA</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>2 - GPGSA</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>3 - GPGSA</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>4 - GPGSA</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>5 - GPGSA</string>
+        </property>
+       </item>
+      </widget>
+     </item>
+     <item>
+      <widget class="QComboBox" name="cb_out_gsv">
+       <item>
+        <property name="text">
+         <string>0 - GPGSV,GLGSV</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>1 - GPGSV,GLGSV</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>2 - GPGSV,GLGSV</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>3 - GPGSV,GLGSV</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>4 - GPGSV,GLGSV</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>5 - GPGSV,GLGSV</string>
+        </property>
+       </item>
+      </widget>
+     </item>
+     <item>
+      <widget class="QComboBox" name="cb_out_zda">
+       <item>
+        <property name="text">
+         <string>0 - GPZDA</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>1 - GPZDA</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>2 - GPZDA</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>3 - GPZDA</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>4 - GPZDA</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>5 - GPZDA</string>
+        </property>
+       </item>
+      </widget>
+     </item>
+     <item>
+      <widget class="QComboBox" name="cb_out_chn">
+       <item>
+        <property name="text">
+         <string>0 - PMTKCHN</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>1 - PMTKCHN</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>2 - PMTKCHN</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>3 - PMTKCHN</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>4 - PMTKCHN</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>5 - PMTKCHN</string>
+        </property>
+       </item>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pb_out_set">
+       <property name="text">
+        <string>SET</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1034</width>
+     <width>1067</width>
      <height>21</height>
     </rect>
    </property>
