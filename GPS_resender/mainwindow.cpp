@@ -8,7 +8,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 
 MainWindow::~MainWindow() {
     COMPORT->close();
-    qInfo() << COMPORT->isOpen();
+    //qInfo() << COMPORT->isOpen();
     delete COMPORT;
 
     delete ui;
@@ -25,14 +25,6 @@ void MainWindow::read_data() {
             lineShow.replace(char(13), "");
             if (!ui->pb_term_Stop->isChecked()) {
                 ui->pte_term->appendPlainText(lineShow);
-                // if (lineShow.contains(ui->le_extract->text())) {
-                //                    if (ui->le_change->text() != "") {
-                //                        lineShow.replace(ui->le_extract->text(), ui->le_change->text());
-                //                        ui->le_udpSend->setText(lineShow);
-                //                    } else {
-                //                        ui->le_udpSend->setText(lineShow);
-                //                    }
-                //}
             }
             dataFromSerial.remove(0, dataFromSerial.indexOf(char(10)) + 1);
         }
@@ -210,7 +202,10 @@ void MainWindow::on_pb_out_set_clicked() {
     out += QString::number(ui->cb_out_zda->currentIndex()) + ",";
     out += QString::number(ui->cb_out_chn->currentIndex());
     ui->cb_send->setEditText(out);
+    on_pb_term_send_clicked();
 }
 
 void MainWindow::on_pb_q_nmea_output_clicked() {
+    ui->cb_send->setEditText("414");
+    on_pb_term_send_clicked();
 }
