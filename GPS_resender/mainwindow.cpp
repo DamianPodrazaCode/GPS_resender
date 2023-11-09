@@ -8,7 +8,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 
 MainWindow::~MainWindow() {
     COMPORT->close();
-    //qInfo() << COMPORT->isOpen();
+    // qInfo() << COMPORT->isOpen();
     delete COMPORT;
 
     delete ui;
@@ -24,7 +24,14 @@ void MainWindow::read_data() {
             QString lineShow = dataFromSerial.left(dataFromSerial.indexOf(char(10)));
             lineShow.replace(char(13), "");
             if (!ui->pb_term_Stop->isChecked()) {
-                ui->pte_term->appendPlainText(lineShow);
+                if (lineShow.contains("PMTK")) {
+                    ui->pte_PMTK_answer->appendPlainText(lineShow);
+                } else {
+                    ui->pte_term->appendPlainText(lineShow);
+                }
+                if (lineShow.contains("GPGGA")) {
+                    ui->le_googleMaps->setText(encodeGPSfromGGA(lineShow));
+                }
             }
             dataFromSerial.remove(0, dataFromSerial.indexOf(char(10)) + 1);
         }
@@ -48,6 +55,30 @@ void MainWindow::fill_cb_serialInfo() {
         }
         COMPORT->close();
         delete COMPORT;
+    }
+}
+
+QString MainWindow::decimalToLonLat(double value) {
+    double degValue = value / 100; // kropka o dwa miejsca w lewo
+    int degrees = (int)degValue; // obcięcie od prawej do kropki
+    double gps = degrees + (((degValue - degrees) * 100) / 60);
+    return QString::number(gps, 'f', 7);
+}
+
+QString MainWindow::encodeGPSfromGGA(QString GGAstr) {
+    QString temp = GGAstr;
+    temp.remove(0, temp.indexOf(',') + 1).remove(0, temp.indexOf(',') + 1);
+    QString sMapLat = temp.left(temp.indexOf(','));
+    temp.remove(0, temp.indexOf(',') + 1).remove(0, temp.indexOf(',') + 1);
+    QString sMapLon = temp.left(temp.indexOf(','));
+    temp = decimalToLonLat(sMapLat.toDouble()) + " " + decimalToLonLat(sMapLon.toDouble());
+    return temp;
+}
+
+void MainWindow::sendCommand(QString cmd) {
+    if (COMPORT != nullptr) {
+        COMPORT->write(cmd.toLatin1());
+        COMPORT->flush();
     }
 }
 
@@ -94,15 +125,10 @@ void MainWindow::on_pb_term_clear_clicked() {
 }
 
 void MainWindow::on_pb_term_send_clicked() {
-    ui->pte_term->clear();
+    // ui->pte_term->clear();
     ui->cb_send->insertItem(0, ui->cb_send->currentText());
     QApplication::processEvents();
-    if (COMPORT != nullptr) {
-        //    qInfo() << "send to GPS";
-        COMPORT->write(out_send.toLatin1());
-        COMPORT->flush();
-    }
-    QApplication::processEvents();
+    sendCommand(out_send.toLatin1());
 }
 
 void MainWindow::on_cb_send_editTextChanged(const QString &arg1) {
@@ -114,7 +140,6 @@ void MainWindow::on_cb_send_editTextChanged(const QString &arg1) {
     out_send = QString::number(checksum, 16);
     ui->l_term_crc->setText("*" + out_send + "<CR><LF>");
     out_send = "$" + text + "*" + out_send + "\r\n";
-    // qInfo() << out_send;
 }
 
 void MainWindow::on_bp_restart_hot_clicked() {
@@ -207,5 +232,22 @@ void MainWindow::on_pb_out_set_clicked() {
 
 void MainWindow::on_pb_q_nmea_output_clicked() {
     ui->cb_send->setEditText("414");
+    on_pb_term_send_clicked();
+}
+
+void MainWindow::on_pb__PMTK_answer_clear_clicked() {
+    ui->pte_PMTK_answer->clear();
+}
+
+void MainWindow::on_pb_firm_clicked() {
+    ui->cb_send->setEditText("605");
+    on_pb_term_send_clicked();
+}
+
+void MainWindow::on_pb_GNS_mode_clicked() {
+    QString out = "353,";
+    out += QString::number(ui->cb_GPS_search->isChecked()) + ",";
+    out += QString::number(ui->cb_glonass_search->isChecked());
+    ui->cb_send->setEditText(out);
     on_pb_term_send_clicked();
 }

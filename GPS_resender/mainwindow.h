@@ -47,6 +47,10 @@ private slots:
     void on_pb_out_set_clicked();
     void on_pb_q_nmea_output_clicked();
 
+    void on_pb__PMTK_answer_clear_clicked();
+    void on_pb_firm_clicked();
+    void on_pb_GNS_mode_clicked();
+
 private:
     Ui::MainWindow *ui;
     QSerialPort *COMPORT = nullptr;
@@ -55,5 +59,8 @@ private:
     QByteArray dataFromSerial;
     uint32_t checksum;
     QString out_send;
+    QString decimalToLonLat(double value);
+    QString encodeGPSfromGGA(QString GGAstr);
+    void sendCommand(QString cmd);
 };
 #endif // MAINWINDOW_H
