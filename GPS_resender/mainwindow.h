@@ -29,12 +29,14 @@ private slots:
     void on_cb_send_editTextChanged(const QString &arg1);
 
     void on_bp_restart_hot_clicked();
-
     void on_bp_restart_warm_clicked();
-
     void on_bp_restart_cold_clicked();
-
     void on_bp_restart_full_clicked();
+
+    void on_pb_set_freq_clicked();
+    void on_pb_api_q_fix_ctl_clicked();
+
+    void on_pb_set_gps_baud_clicked();
 
 private:
     Ui::MainWindow *ui;

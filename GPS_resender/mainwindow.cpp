@@ -106,7 +106,7 @@ void MainWindow::on_pb_term_send_clicked() {
     ui->cb_send->insertItem(0, ui->cb_send->currentText());
     QApplication::processEvents();
     if (COMPORT != nullptr) {
-    //    qInfo() << "send to GPS";
+        //    qInfo() << "send to GPS";
         COMPORT->write(out_send.toLatin1());
         COMPORT->flush();
     }
@@ -143,4 +143,36 @@ void MainWindow::on_bp_restart_cold_clicked() {
 void MainWindow::on_bp_restart_full_clicked() {
     ui->cb_send->setEditText("104");
     on_pb_term_send_clicked();
+}
+
+void MainWindow::on_pb_set_freq_clicked() {
+    switch (ui->cb_freq->currentIndex()) {
+    case 0:
+        ui->cb_send->setEditText("220,1000");
+        on_pb_term_send_clicked();
+        break;
+    case 1:
+        ui->cb_send->setEditText("220,500");
+        on_pb_term_send_clicked();
+        break;
+    case 2:
+        ui->cb_send->setEditText("220,200");
+        on_pb_term_send_clicked();
+        break;
+    case 3:
+        ui->cb_send->setEditText("220,100");
+        on_pb_term_send_clicked();
+        break;
+    default:
+        break;
+    }
+}
+
+void MainWindow::on_pb_api_q_fix_ctl_clicked() {
+    ui->cb_send->setEditText("400");
+    on_pb_term_send_clicked();
+}
+
+void MainWindow::on_pb_set_gps_baud_clicked() {
+    ui->cb_send->setEditText("251," + ui->cb_gps_baud->currentText());
 }
