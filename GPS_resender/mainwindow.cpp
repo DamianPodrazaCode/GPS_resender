@@ -175,21 +175,41 @@ void MainWindow::on_pb_api_q_fix_ctl_clicked() {
 
 void MainWindow::on_pb_set_gps_baud_clicked() {
     ui->cb_send->setEditText("251," + ui->cb_gps_baud->currentText());
+    on_pb_term_send_clicked();
 }
 
 void MainWindow::on_pb_set_dgps_clicked() {
+    ui->cb_send->setEditText("301," + QString::number(ui->cb_dgps->currentIndex()));
+    on_pb_term_send_clicked();
 }
 
 void MainWindow::on_pb_api_q_dgps_mode_clicked() {
+    ui->cb_send->setEditText("401");
+    on_pb_term_send_clicked();
 }
 
 void MainWindow::on_pb_set_sbas_clicked() {
+    ui->cb_send->setEditText("313," + QString::number(ui->cb_dgps->currentIndex()));
+    on_pb_term_send_clicked();
 }
 
 void MainWindow::on_pb_api_q_sbas_en_clicked() {
+    ui->cb_send->setEditText("413");
+    on_pb_term_send_clicked();
 }
 
 void MainWindow::on_pb_out_set_clicked() {
+    QString out = "314,";
+    out += QString::number(ui->cb_out_gll->currentIndex()) + ",";
+    out += QString::number(ui->cb_out_rmc->currentIndex()) + ",";
+    out += QString::number(ui->cb_out_vtg->currentIndex()) + ",";
+    out += QString::number(ui->cb_out_gga->currentIndex()) + ",";
+    out += QString::number(ui->cb_out_gsa->currentIndex()) + ",";
+    out += QString::number(ui->cb_out_gsv->currentIndex()) + ",";
+    out += "0,0,0,0,0,0,0,0,0,0,0,";
+    out += QString::number(ui->cb_out_zda->currentIndex()) + ",";
+    out += QString::number(ui->cb_out_chn->currentIndex());
+    ui->cb_send->setEditText(out);
 }
 
 void MainWindow::on_pb_q_nmea_output_clicked() {
