@@ -7,6 +7,10 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 }
 
 MainWindow::~MainWindow() {
+    COMPORT->close();
+    qInfo() << COMPORT->isOpen();
+    delete COMPORT;
+
     delete ui;
 }
 
@@ -76,11 +80,10 @@ void MainWindow::on_pb_serial_connect_toggled(bool checked) {
         connect(COMPORT, SIGNAL(readyRead()), this, SLOT(read_data()));
 
     } else {
+        disconnect(COMPORT, SIGNAL(readyRead()), this, SLOT(read_data()));
         COMPORT->close();
         delete COMPORT;
         ui->pb_serial_connect->setText("Connect");
-
-        disconnect(COMPORT, SIGNAL(readyRead()), this, SLOT(read_data()));
     }
 }
 
@@ -90,5 +93,16 @@ void MainWindow::on_pb_term_Stop_toggled(bool checked) {
     } else {
         ui->pb_term_Stop->setText("Stop");
     }
+}
+
+
+void MainWindow::on_pb_term_clear_clicked() {
+    ui->pte_term->clear();
+}
+
+
+void MainWindow::on_le_term_textChanged(const QString &arg1) {
+    QByteArray text = arg1.toLatin1();
+    qInfo() << text;
 }
 

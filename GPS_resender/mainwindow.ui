@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1073</width>
-    <height>600</height>
+    <width>1024</width>
+    <height>768</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -95,9 +95,15 @@
      <rect>
       <x>250</x>
       <y>0</y>
-      <width>801</width>
-      <height>431</height>
+      <width>640</width>
+      <height>420</height>
      </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
     </property>
     <property name="title">
      <string>Serial Terminal</string>
@@ -143,6 +149,11 @@
      </item>
      <item row="1" column="0">
       <widget class="QPlainTextEdit" name="pte_term">
+       <property name="font">
+        <font>
+         <family>Consolas</family>
+        </font>
+       </property>
        <property name="lineWidth">
         <number>1</number>
        </property>
@@ -199,7 +210,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1073</width>
+     <width>1024</width>
      <height>21</height>
     </rect>
    </property>

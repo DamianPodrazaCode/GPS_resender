@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QSerialPort>
 #include <QSerialPortInfo>
+#include <QDebug>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -23,6 +24,10 @@ private slots:
     void on_pb_serial_connect_toggled(bool checked);
 
     void on_pb_term_Stop_toggled(bool checked);
+
+    void on_pb_term_clear_clicked();
+
+    void on_le_term_textChanged(const QString &arg1);
 
 private:
     Ui::MainWindow *ui;
