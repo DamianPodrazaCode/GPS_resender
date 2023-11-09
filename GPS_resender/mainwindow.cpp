@@ -176,3 +176,21 @@ void MainWindow::on_pb_api_q_fix_ctl_clicked() {
 void MainWindow::on_pb_set_gps_baud_clicked() {
     ui->cb_send->setEditText("251," + ui->cb_gps_baud->currentText());
 }
+
+void MainWindow::on_pb_set_dgps_clicked() {
+}
+
+void MainWindow::on_pb_api_q_dgps_mode_clicked() {
+}
+
+void MainWindow::on_pb_set_sbas_clicked() {
+}
+
+void MainWindow::on_pb_api_q_sbas_en_clicked() {
+}
+
+void MainWindow::on_pb_out_set_clicked() {
+}
+
+void MainWindow::on_pb_q_nmea_output_clicked() {
+}

@@ -38,6 +38,15 @@ private slots:
 
     void on_pb_set_gps_baud_clicked();
 
+    void on_pb_set_dgps_clicked();
+    void on_pb_api_q_dgps_mode_clicked();
+
+    void on_pb_set_sbas_clicked();
+    void on_pb_api_q_sbas_en_clicked();
+
+    void on_pb_out_set_clicked();
+    void on_pb_q_nmea_output_clicked();
+
 private:
     Ui::MainWindow *ui;
     QSerialPort *COMPORT = nullptr;
