@@ -4,13 +4,47 @@
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow) {
     ui->setupUi(this);
     fill_cb_serialInfo();
+
+    ui->cb_serial_baud->setCurrentIndex(getSettings("serial", "BaudRate").toInt());
+    ui->cb_freq->setCurrentIndex(getSettings("gps", "Freq").toInt());
+    ui->cb_gps_baud->setCurrentIndex(getSettings("gps", "BaudRate").toInt());
+    ui->cb_dgps->setCurrentIndex(getSettings("gps", "Dgps").toInt());
+    ui->cb_sbas->setCurrentIndex(getSettings("gps", "Sbas").toInt());
+    ui->cb_GPS_search->setChecked(getSettings("gps", "GnssGps").toInt());
+    ui->cb_glonass_search->setChecked(getSettings("gps", "GnssGlonass").toInt());
+    ui->cb_out_gll->setCurrentIndex(getSettings("gps", "nmeaGLL").toInt());
+    ui->cb_out_rmc->setCurrentIndex(getSettings("gps", "nmeaRMC").toInt());
+    ui->cb_out_vtg->setCurrentIndex(getSettings("gps", "nmeaVTG").toInt());
+    ui->cb_out_gga->setCurrentIndex(getSettings("gps", "nmeaGGA").toInt());
+    ui->cb_out_gsa->setCurrentIndex(getSettings("gps", "nmeaGSA").toInt());
+    ui->cb_out_gsv->setCurrentIndex(getSettings("gps", "nmeaGSV").toInt());
+    ui->cb_out_zda->setCurrentIndex(getSettings("gps", "nmeaZDA").toInt());
+    ui->cb_out_chn->setCurrentIndex(getSettings("gps", "nmeaCHN").toInt());
 }
 
 MainWindow::~MainWindow() {
 
-    disconnect(COMPORT, SIGNAL(readyRead()), this, SLOT(read_data()));
+    setSettings("serial", "BaudRate", QString::number(ui->cb_serial_baud->currentIndex()));
+    setSettings("gps", "Freq", QString::number(ui->cb_freq->currentIndex()));
+    setSettings("gps", "BaudRate", QString::number(ui->cb_gps_baud->currentIndex()));
+    setSettings("gps", "Dgps", QString::number(ui->cb_dgps->currentIndex()));
+    setSettings("gps", "Sbas", QString::number(ui->cb_sbas->currentIndex()));
+    setSettings("gps", "GnssGps", QString::number(ui->cb_GPS_search->isChecked()));
+    setSettings("gps", "GnssGlonass", QString::number(ui->cb_glonass_search->isChecked()));
+    setSettings("gps", "nmeaGLL", QString::number(ui->cb_out_gll->currentIndex()));
+    setSettings("gps", "nmeaRMC", QString::number(ui->cb_out_rmc->currentIndex()));
+    setSettings("gps", "nmeaVTG", QString::number(ui->cb_out_vtg->currentIndex()));
+    setSettings("gps", "nmeaGGA", QString::number(ui->cb_out_gga->currentIndex()));
+    setSettings("gps", "nmeaGSA", QString::number(ui->cb_out_gsa->currentIndex()));
+    setSettings("gps", "nmeaGSV", QString::number(ui->cb_out_gsv->currentIndex()));
+    setSettings("gps", "nmeaZDA", QString::number(ui->cb_out_zda->currentIndex()));
+    setSettings("gps", "nmeaCHN", QString::number(ui->cb_out_chn->currentIndex()));
+
+    if (COMPORT != nullptr) {
+        disconnect(COMPORT, SIGNAL(readyRead()), this, SLOT(read_data()));
     COMPORT->close();
     delete COMPORT;
+    }
 
     delete ui;
 }
