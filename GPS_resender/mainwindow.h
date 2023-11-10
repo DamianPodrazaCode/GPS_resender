@@ -51,14 +51,16 @@ private slots:
     void on_pb_firm_clicked();
     void on_pb_GNS_mode_clicked();
 
+    void on_pushButton_clicked();
+
 private:
     Ui::MainWindow *ui;
     QSerialPort *COMPORT = nullptr;
     QStringList portInfoList;
     void fill_cb_serialInfo();
     QByteArray dataFromSerial;
-    uint32_t checksum;
-    QString out_send;
+    //uint32_t checksum;
+    //QString out_send;
     QString decimalToLonLat(double value);
     QString encodeGPSfromGGA(QString GGAstr);
     void sendCommand(QString cmd);
