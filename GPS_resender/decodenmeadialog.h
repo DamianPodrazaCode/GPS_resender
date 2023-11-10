@@ -2,6 +2,7 @@
 #define DECODENMEADIALOG_H
 
 #include <QDialog>
+#include <QStringList>
 
 namespace Ui {
 class DecodeNMEADialog;
@@ -19,16 +20,19 @@ public:
     void setVTG(QString str);
     void setGGA(QString str);
     void setGSA(QString str);
-    void setGSV(QString str);
+    void setPGSV(QString str);
+    void setLGSV(QString str);
     void setZDA(QString str);
     void setCHN(QString str);
 
 private slots:
 
-    void on_DecodeNMEADialog_rejected();
-
 private:
     Ui::DecodeNMEADialog *ui;
+    int pgsvCount = 0;
+    int lgsvCount = 0;
+    QStringList lPGSV;
+    QStringList lLGSV;
 };
 
 #endif // DECODENMEADIALOG_H

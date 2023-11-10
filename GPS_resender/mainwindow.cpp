@@ -96,9 +96,10 @@ void MainWindow::read_data() {
                 }
                 if (lineShow.contains("GPGSA") & (dnd != nullptr))
                     dnd->setGSA(lineShow);
-                if (lineShow.contains("GPGSV") & (dnd != nullptr)) {
-                    //
-                }
+                if (lineShow.contains("$GPGSV") & (dnd != nullptr))
+                    dnd->setPGSV(lineShow);
+                if (lineShow.contains("GLGSV") & (dnd != nullptr))
+                    dnd->setLGSV(lineShow);
                 if (lineShow.contains("GPZDA") & (dnd != nullptr))
                     dnd->setZDA(lineShow);
             }
