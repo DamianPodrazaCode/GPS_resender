@@ -5,6 +5,8 @@
 #include <QMainWindow>
 #include <QSerialPort>
 #include <QSerialPortInfo>
+#include <QThread>
+#include <QSettings>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -20,6 +22,9 @@ public:
     ~MainWindow();
 
 private slots:
+    QString getSettings(QString group, QString key);
+    void setSettings(QString group, QString key, QString value);
+
     void read_data();
 
     void on_pb_serial_connect_toggled(bool checked);
@@ -59,8 +64,8 @@ private:
     QStringList portInfoList;
     void fill_cb_serialInfo();
     QByteArray dataFromSerial;
-    //uint32_t checksum;
-    //QString out_send;
+    // uint32_t checksum;
+    // QString out_send;
     QString decimalToLonLat(double value);
     QString encodeGPSfromGGA(QString GGAstr);
     void sendCommand(QString cmd);

@@ -7,11 +7,22 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 }
 
 MainWindow::~MainWindow() {
+
+    disconnect(COMPORT, SIGNAL(readyRead()), this, SLOT(read_data()));
     COMPORT->close();
-    // qInfo() << COMPORT->isOpen();
     delete COMPORT;
 
     delete ui;
+}
+
+QString MainWindow::getSettings(QString group, QString key) {
+    QSettings settings("init.ini", QSettings::Format::IniFormat);
+    return settings.value(group + "/" + key).toString();
+}
+
+void MainWindow::setSettings(QString group, QString key, QString value) {
+    QSettings settings("init.ini", QSettings::Format::IniFormat);
+    settings.setValue(group + "/" + key, value);
 }
 
 void MainWindow::read_data() {
@@ -89,6 +100,8 @@ void MainWindow::sendCommand(QString cmd) {
     if (COMPORT != nullptr) {
         COMPORT->write(outSend.toLatin1());
     }
+    ui->cb_send->insertItem(0, cmd);
+    ui->cb_send->setCurrentIndex(0);
 }
 
 void MainWindow::on_pb_serial_connect_toggled(bool checked) {
@@ -190,15 +203,18 @@ void MainWindow::on_pb_api_q_fix_ctl_clicked() {
 
 void MainWindow::on_pb_set_gps_baud_clicked() {
     sendCommand("251," + ui->cb_gps_baud->currentText());
+    COMPORT->flush();
+    QThread::msleep(100);
 
-    //    QApplication::processEvents();
-    //    disconnect(COMPORT, SIGNAL(readyRead()), this, SLOT(read_data()));
-    //    COMPORT->close();
-    //    qInfo() << ui->cb_gps_baud->currentText().toInt();
-    //    qInfo() << COMPORT->setBaudRate(ui->cb_gps_baud->currentText().toInt());
-    //    qInfo() << COMPORT->open(QSerialPort::ReadWrite);
-    //    COMPORT->flush();
-    //    connect(COMPORT, SIGNAL(readyRead()), this, SLOT(read_data()));
+    COMPORT->close();
+    QThread::msleep(100);
+    COMPORT->setBaudRate(ui->cb_gps_baud->currentText().toInt());
+    ui->cb_serial_baud->setCurrentText(ui->cb_gps_baud->currentText());
+    COMPORT->open(QSerialPort::ReadWrite);
+    QApplication::processEvents();
+    ui->pte_term->clear();
+    ui->pte_PMTK_answer->clear();
+    QThread::msleep(100);
 }
 
 void MainWindow::on_pb_set_dgps_clicked() {
