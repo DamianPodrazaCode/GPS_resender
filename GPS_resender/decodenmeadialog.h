@@ -14,13 +14,18 @@ public:
     explicit DecodeNMEADialog(QWidget *parent = nullptr);
     ~DecodeNMEADialog();
 
-public slots:
-    void updateNMEA();
+    void setGLL(QString str);
+    void setRMC(QString str);
+    void setVTG(QString str);
+    void setGGA(QString str);
+    void setGSA(QString str);
+    void setGSV(QString str);
+    void setZDA(QString str);
+    void setCHN(QString str);
 
 private slots:
-    void on_l_gll_windowTitleChanged(const QString &title);
 
-    void on_le_GLL_textChanged(const QString &arg1);
+    void on_DecodeNMEADialog_rejected();
 
 private:
     Ui::DecodeNMEADialog *ui;

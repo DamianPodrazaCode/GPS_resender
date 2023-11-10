@@ -23,12 +23,8 @@ public:
     ~MainWindow();
 
 signals:
-    void updateNMEA_signal();
 
 private slots:
-    QString getSettings(QString group, QString key);
-    void setSettings(QString group, QString key, QString value);
-
     void read_data();
 
     void on_pb_serial_connect_toggled(bool checked);
@@ -64,8 +60,9 @@ private slots:
 
     void on_pb_decode_nmea_clicked();
 
-
 private:
+    QString getSettings(QString group, QString key);
+    void setSettings(QString group, QString key, QString value);
     Ui::MainWindow *ui;
     QSerialPort *COMPORT = nullptr;
     QStringList portInfoList;
@@ -76,6 +73,6 @@ private:
     QString decimalToLonLat(double value);
     QString encodeGPSfromGGA(QString GGAstr);
     void sendCommand(QString cmd);
-    DecodeNMEADialog *dnd;
+    DecodeNMEADialog *dnd = nullptr;
 };
 #endif // MAINWINDOW_H

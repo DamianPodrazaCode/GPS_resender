@@ -3,23 +3,45 @@
 
 DecodeNMEADialog::DecodeNMEADialog(QWidget *parent) : QDialog(parent), ui(new Ui::DecodeNMEADialog) {
     ui->setupUi(this);
-    connect(parent, SIGNAL(updateNMEA_signal()), this, SLOT(updateNMEA()));
 }
 
 DecodeNMEADialog::~DecodeNMEADialog() {
     delete ui;
 }
 
-void DecodeNMEADialog::updateNMEA() {
-    ui->le_GLL->setText("aaa");
+void DecodeNMEADialog::setGLL(QString str) {
+    ui->le_gll->setText(str);
 }
 
-void DecodeNMEADialog::on_l_gll_windowTitleChanged(const QString &title) {
-    qInfo() << "change" << title;
+void DecodeNMEADialog::setRMC(QString str) {
+    ui->le_rmc->setText(str);
 }
 
-void DecodeNMEADialog::on_le_GLL_textChanged(const QString &arg1)
+void DecodeNMEADialog::setVTG(QString str) {
+    ui->le_vtg->setText(str);
+}
+
+void DecodeNMEADialog::setGGA(QString str) {
+    ui->le_gga->setText(str);
+}
+
+void DecodeNMEADialog::setGSA(QString str) {
+    ui->le_gsa->setText(str);
+}
+
+void DecodeNMEADialog::setGSV(QString str) {
+}
+
+void DecodeNMEADialog::setZDA(QString str) {
+    ui->le_zda->setText(str);
+}
+
+void DecodeNMEADialog::setCHN(QString str) {
+    ui->le_chn->setText(str);
+}
+
+void DecodeNMEADialog::on_DecodeNMEADialog_rejected()
 {
-    qInfo() << "change" << arg1;
+
 }
 

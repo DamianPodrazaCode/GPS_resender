@@ -70,7 +70,11 @@ void MainWindow::read_data() {
             QString lineShow = dataFromSerial.left(dataFromSerial.indexOf(char(10)));
             lineShow.replace(char(13), "");
             if (!ui->pb_term_Stop->isChecked()) {
-                if (lineShow.contains("PMTK")) {
+                if (lineShow.contains("PMTKCHN")) {
+                    ui->pte_term->appendPlainText(lineShow);
+                    if (dnd != nullptr)
+                        dnd->setCHN(lineShow);
+                } else if (lineShow.contains("PMTK")) {
                     // usuanie resztki poprzedniej danej bez zakończenia <LF>
                     if (lineShow.indexOf("$PMTK") > 0) {
                         lineShow.remove(0, lineShow.indexOf("$PMTK"));
@@ -78,11 +82,25 @@ void MainWindow::read_data() {
                     ui->pte_PMTK_answer->appendPlainText(lineShow);
                 } else {
                     ui->pte_term->appendPlainText(lineShow);
-                    emit updateNMEA_signal();
                 }
+                if (lineShow.contains("GPGLL") & (dnd != nullptr))
+                    dnd->setGLL(lineShow);
+                if (lineShow.contains("GPRMC") & (dnd != nullptr))
+                    dnd->setRMC(lineShow);
+                if (lineShow.contains("GPVTG") & (dnd != nullptr))
+                    dnd->setVTG(lineShow);
                 if (lineShow.contains("GPGGA")) {
                     ui->le_googleMaps->setText(encodeGPSfromGGA(lineShow));
+                    if (dnd != nullptr)
+                        dnd->setGGA(lineShow);
                 }
+                if (lineShow.contains("GPGSA") & (dnd != nullptr))
+                    dnd->setGSA(lineShow);
+                if (lineShow.contains("GPGSV") & (dnd != nullptr)) {
+                    //
+                }
+                if (lineShow.contains("GPZDA") & (dnd != nullptr))
+                    dnd->setZDA(lineShow);
             }
             dataFromSerial.remove(0, dataFromSerial.indexOf(char(10)) + 1);
         }
