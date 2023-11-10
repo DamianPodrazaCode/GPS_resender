@@ -25,6 +25,10 @@ void MainWindow::read_data() {
             lineShow.replace(char(13), "");
             if (!ui->pb_term_Stop->isChecked()) {
                 if (lineShow.contains("PMTK")) {
+                    // usuanie resztki poprzedniej danej bez zakończenia <LF>
+                    if (lineShow.indexOf("$PMTK") > 0) {
+                        lineShow.remove(0, lineShow.indexOf("$PMTK"));
+                    }
                     ui->pte_PMTK_answer->appendPlainText(lineShow);
                 } else {
                     ui->pte_term->appendPlainText(lineShow);
@@ -84,7 +88,6 @@ void MainWindow::sendCommand(QString cmd) {
     QString outSend = "$" + text + "*" + QString::number(checksum, 16) + "\r\n";
     if (COMPORT != nullptr) {
         COMPORT->write(outSend.toLatin1());
-        COMPORT->flush();
     }
 }
 
@@ -133,8 +136,8 @@ void MainWindow::on_pb_term_clear_clicked() {
 void MainWindow::on_pb_term_send_clicked() {
     ui->pte_term->clear();
     ui->cb_send->insertItem(0, ui->cb_send->currentText());
-    QApplication::processEvents();
     sendCommand(ui->cb_send->currentText().toLatin1());
+    QApplication::processEvents();
 }
 
 void MainWindow::on_cb_send_editTextChanged(const QString &arg1) {
@@ -147,42 +150,34 @@ void MainWindow::on_cb_send_editTextChanged(const QString &arg1) {
 }
 
 void MainWindow::on_bp_restart_hot_clicked() {
-    ui->cb_send->setEditText("101");
-    //on_pb_term_send_clicked();
+    sendCommand("101");
 }
 
 void MainWindow::on_bp_restart_warm_clicked() {
-    ui->cb_send->setEditText("102");
-    //on_pb_term_send_clicked();
+    sendCommand("102");
 }
 
 void MainWindow::on_bp_restart_cold_clicked() {
-    ui->cb_send->setEditText("103");
-    //on_pb_term_send_clicked();
+    sendCommand("103");
 }
 
 void MainWindow::on_bp_restart_full_clicked() {
-    ui->cb_send->setEditText("104");
-    //on_pb_term_send_clicked();
+    sendCommand("104");
 }
 
 void MainWindow::on_pb_set_freq_clicked() {
     switch (ui->cb_freq->currentIndex()) {
     case 0:
-        ui->cb_send->setEditText("220,1000");
-        //on_pb_term_send_clicked();
+        sendCommand("220,1000");
         break;
     case 1:
-        ui->cb_send->setEditText("220,500");
-        //on_pb_term_send_clicked();
+        sendCommand("220,500");
         break;
     case 2:
-        ui->cb_send->setEditText("220,200");
-        //on_pb_term_send_clicked();
+        sendCommand("220,200");
         break;
     case 3:
-        ui->cb_send->setEditText("220,100");
-        //on_pb_term_send_clicked();
+        sendCommand("220,100");
         break;
     default:
         break;
@@ -190,42 +185,36 @@ void MainWindow::on_pb_set_freq_clicked() {
 }
 
 void MainWindow::on_pb_api_q_fix_ctl_clicked() {
-    ui->cb_send->setEditText("400");
-    //on_pb_term_send_clicked();
+    sendCommand("400");
 }
 
 void MainWindow::on_pb_set_gps_baud_clicked() {
-    ui->cb_send->setEditText("251," + ui->cb_gps_baud->currentText());
-    //on_pb_term_send_clicked();
+    sendCommand("251," + ui->cb_gps_baud->currentText());
 
-//    QApplication::processEvents();
-//    disconnect(COMPORT, SIGNAL(readyRead()), this, SLOT(read_data()));
-//    COMPORT->close();
-//    qInfo() << ui->cb_gps_baud->currentText().toInt();
-//    qInfo() << COMPORT->setBaudRate(ui->cb_gps_baud->currentText().toInt());
-//    qInfo() << COMPORT->open(QSerialPort::ReadWrite);
-//    COMPORT->flush();
-//    connect(COMPORT, SIGNAL(readyRead()), this, SLOT(read_data()));
+    //    QApplication::processEvents();
+    //    disconnect(COMPORT, SIGNAL(readyRead()), this, SLOT(read_data()));
+    //    COMPORT->close();
+    //    qInfo() << ui->cb_gps_baud->currentText().toInt();
+    //    qInfo() << COMPORT->setBaudRate(ui->cb_gps_baud->currentText().toInt());
+    //    qInfo() << COMPORT->open(QSerialPort::ReadWrite);
+    //    COMPORT->flush();
+    //    connect(COMPORT, SIGNAL(readyRead()), this, SLOT(read_data()));
 }
 
 void MainWindow::on_pb_set_dgps_clicked() {
-    ui->cb_send->setEditText("301," + QString::number(ui->cb_dgps->currentIndex()));
-    //on_pb_term_send_clicked();
+    sendCommand("301," + QString::number(ui->cb_dgps->currentIndex()));
 }
 
 void MainWindow::on_pb_api_q_dgps_mode_clicked() {
-    ui->cb_send->setEditText("401");
-    //on_pb_term_send_clicked();
+    sendCommand("401");
 }
 
 void MainWindow::on_pb_set_sbas_clicked() {
-    ui->cb_send->setEditText("313," + QString::number(ui->cb_dgps->currentIndex()));
-    //on_pb_term_send_clicked();
+    sendCommand("313," + QString::number(ui->cb_dgps->currentIndex()));
 }
 
 void MainWindow::on_pb_api_q_sbas_en_clicked() {
-    ui->cb_send->setEditText("413");
-    //on_pb_term_send_clicked();
+    sendCommand("413");
 }
 
 void MainWindow::on_pb_out_set_clicked() {
@@ -239,13 +228,11 @@ void MainWindow::on_pb_out_set_clicked() {
     out += "0,0,0,0,0,0,0,0,0,0,0,";
     out += QString::number(ui->cb_out_zda->currentIndex()) + ",";
     out += QString::number(ui->cb_out_chn->currentIndex());
-    ui->cb_send->setEditText(out);
-    //on_pb_term_send_clicked();
+    sendCommand(out);
 }
 
 void MainWindow::on_pb_q_nmea_output_clicked() {
-    ui->cb_send->setEditText("414");
-    //on_pb_term_send_clicked();
+    sendCommand("414");
 }
 
 void MainWindow::on_pb__PMTK_answer_clear_clicked() {
@@ -253,16 +240,14 @@ void MainWindow::on_pb__PMTK_answer_clear_clicked() {
 }
 
 void MainWindow::on_pb_firm_clicked() {
-    ui->cb_send->setEditText("605");
-    //on_pb_term_send_clicked();
+    sendCommand("605");
 }
 
 void MainWindow::on_pb_GNS_mode_clicked() {
     QString out = "353,";
     out += QString::number(ui->cb_GPS_search->isChecked()) + ",";
     out += QString::number(ui->cb_glonass_search->isChecked());
-    ui->cb_send->setEditText(out);
-    //on_pb_term_send_clicked();
+    sendCommand(out);
 }
 
 void MainWindow::on_pushButton_clicked() {
