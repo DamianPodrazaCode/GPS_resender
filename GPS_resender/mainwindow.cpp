@@ -3,6 +3,7 @@
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow) {
     ui->setupUi(this);
+
     fill_cb_serialInfo();
 
     ui->cb_serial_baud->setCurrentIndex(getSettings("serial", "BaudRate").toInt());
@@ -42,8 +43,8 @@ MainWindow::~MainWindow() {
 
     if (COMPORT != nullptr) {
         disconnect(COMPORT, SIGNAL(readyRead()), this, SLOT(read_data()));
-    COMPORT->close();
-    delete COMPORT;
+        COMPORT->close();
+        delete COMPORT;
     }
 
     delete ui;
@@ -77,6 +78,7 @@ void MainWindow::read_data() {
                     ui->pte_PMTK_answer->appendPlainText(lineShow);
                 } else {
                     ui->pte_term->appendPlainText(lineShow);
+                    emit updateNMEA_signal();
                 }
                 if (lineShow.contains("GPGGA")) {
                     ui->le_googleMaps->setText(encodeGPSfromGGA(lineShow));
@@ -166,6 +168,10 @@ void MainWindow::on_pb_serial_connect_toggled(bool checked) {
         COMPORT = nullptr;
         ui->pb_serial_connect->setText("Connect");
     }
+}
+
+void MainWindow::on_pb_reascan_clicked() {
+    fill_cb_serialInfo();
 }
 
 void MainWindow::on_pb_term_Stop_toggled(bool checked) {
@@ -300,6 +306,7 @@ void MainWindow::on_pb_GNS_mode_clicked() {
     sendCommand(out);
 }
 
-void MainWindow::on_pushButton_clicked() {
-    fill_cb_serialInfo();
+void MainWindow::on_pb_decode_nmea_clicked() {
+    dnd = new DecodeNMEADialog(this);
+    dnd->show();
 }

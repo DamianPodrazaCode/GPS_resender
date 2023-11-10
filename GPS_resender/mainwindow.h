@@ -1,12 +1,13 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include "decodenmeadialog.h"
 #include <QDebug>
 #include <QMainWindow>
 #include <QSerialPort>
 #include <QSerialPortInfo>
-#include <QThread>
 #include <QSettings>
+#include <QThread>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -21,6 +22,9 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+signals:
+    void updateNMEA_signal();
+
 private slots:
     QString getSettings(QString group, QString key);
     void setSettings(QString group, QString key, QString value);
@@ -28,6 +32,8 @@ private slots:
     void read_data();
 
     void on_pb_serial_connect_toggled(bool checked);
+    void on_pb_reascan_clicked();
+
     void on_pb_term_Stop_toggled(bool checked);
     void on_pb_term_clear_clicked();
     void on_pb_term_send_clicked();
@@ -56,7 +62,8 @@ private slots:
     void on_pb_firm_clicked();
     void on_pb_GNS_mode_clicked();
 
-    void on_pushButton_clicked();
+    void on_pb_decode_nmea_clicked();
+
 
 private:
     Ui::MainWindow *ui;
@@ -69,5 +76,6 @@ private:
     QString decimalToLonLat(double value);
     QString encodeGPSfromGGA(QString GGAstr);
     void sendCommand(QString cmd);
+    DecodeNMEADialog *dnd;
 };
 #endif // MAINWINDOW_H
