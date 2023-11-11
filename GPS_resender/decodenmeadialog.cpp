@@ -96,10 +96,8 @@ void DecodeNMEADialog::on_le_gll_textChanged(const QString &arg1) {
     temp.remove(0, temp.indexOf(',') + 1);
     QString mode = temp.left(temp.indexOf('*'));
 
-    ui->gll_lat->setText(lat);
-    ui->gll_lat_in->setText(latIn);
-    ui->gll_lon->setText(lon);
-    ui->gll_lon_in->setText(lonIn);
+    ui->gll_lat->setText(lat + " " + latIn);
+    ui->gll_lon->setText(lon + " " + lonIn);
     ui->gll_utc->setText(utcTime);
     if (stat == "A")
         ui->gll_stat->setText("A - Data Valid");
@@ -115,4 +113,74 @@ void DecodeNMEADialog::on_le_gll_textChanged(const QString &arg1) {
         ui->gll_mode->setText("E - DR");
     else
         ui->gll_mode->setText("---");
+}
+
+void DecodeNMEADialog::on_le_rmc_textChanged(const QString &arg1) {
+    QString temp = arg1;
+    temp.remove(0, temp.indexOf(',') + 1);
+    QString utcTime = temp.left(temp.indexOf(','));
+    temp.remove(0, temp.indexOf(',') + 1);
+    QString stat = temp.left(temp.indexOf(','));
+    temp.remove(0, temp.indexOf(',') + 1);
+    QString lat = temp.left(temp.indexOf(','));
+    temp.remove(0, temp.indexOf(',') + 1);
+    QString latIn = temp.left(temp.indexOf(','));
+    temp.remove(0, temp.indexOf(',') + 1);
+    QString lon = temp.left(temp.indexOf(','));
+    temp.remove(0, temp.indexOf(',') + 1);
+    QString lonIn = temp.left(temp.indexOf(','));
+    temp.remove(0, temp.indexOf(',') + 1);
+    QString sog = temp.left(temp.indexOf(','));
+    temp.remove(0, temp.indexOf(',') + 1);
+    QString cog = temp.left(temp.indexOf(','));
+    temp.remove(0, temp.indexOf(',') + 1);
+    QString date = temp.left(temp.indexOf(','));
+    temp.remove(0, temp.indexOf(',') + 1);
+    QString mv = temp.left(temp.indexOf(','));
+    temp.remove(0, temp.indexOf(',') + 1);
+    QString mvIn = temp.left(temp.indexOf(','));
+    temp.remove(0, temp.indexOf(',') + 1);
+    QString mode = temp.left(temp.indexOf('*'));
+
+    ui->rmc_utc->setText(utcTime);
+    // ui->rmc_stat->setText(stat);
+    if (stat == "A")
+        ui->rmc_stat->setText("A - Data Valid");
+    else if (stat == "V")
+        ui->rmc_stat->setText("A - Data Not Valid");
+    else
+        ui->rmc_stat->setText("---");
+    ui->rmc_lat->setText(lat + " " + latIn);
+    ui->rmc_lon->setText(lon + " " + lonIn);
+    ui->rmc_sog->setText(sog + " knots");
+    ui->rmc_cog->setText(sog + " degrees");
+    ui->rmc_date->setText(date);
+    ui->rmc_mv->setText(mv + " " + mvIn);
+
+    if (mode == "A")
+        ui->rmc_mode->setText("A - Autonomous");
+    else if (mode == "D")
+        ui->rmc_mode->setText("D - Differential");
+    else if (mode == "E")
+        ui->rmc_mode->setText("E - Estimated");
+    else
+        ui->rmc_mode->setText("---");
+}
+
+void DecodeNMEADialog::on_le_vtg_textChanged(const QString &arg1) {
+    QString temp = arg1;
+    temp.remove(0, temp.indexOf(',') + 1);
+    QString course_t = temp.left(temp.indexOf(','));
+    temp.remove(0, temp.indexOf(',') + 1);
+    temp.remove(0, temp.indexOf(',') + 1);
+    QString course_m = temp.left(temp.indexOf(','));
+    temp.remove(0, temp.indexOf(',') + 1);
+    temp.remove(0, temp.indexOf(',') + 1);
+    QString speed_k = temp.left(temp.indexOf(','));
+    temp.remove(0, temp.indexOf(',') + 1);
+    temp.remove(0, temp.indexOf(',') + 1);
+    QString speed_km = temp.left(temp.indexOf(','));
+    temp.remove(0, temp.indexOf(',') + 1);
+    temp.remove(0, temp.indexOf(',') + 1);
+    QString mode = temp.left(temp.indexOf('*'));
 }

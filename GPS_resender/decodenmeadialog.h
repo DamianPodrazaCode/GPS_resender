@@ -29,6 +29,10 @@ private slots:
 
     void on_le_gll_textChanged(const QString &arg1);
 
+    void on_le_rmc_textChanged(const QString &arg1);
+
+    void on_le_vtg_textChanged(const QString &arg1);
+
 private:
     Ui::DecodeNMEADialog *ui;
     int pgsvCount = 0;
