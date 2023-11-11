@@ -362,10 +362,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QLineEdit" name="lineEdit_3"/>
-          </item>
-          <item>
-           <widget class="QLineEdit" name="lineEdit_4"/>
+           <widget class="QLineEdit" name="gga_lat"/>
           </item>
           <item>
            <widget class="QLabel" name="label_3">
@@ -375,10 +372,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QLineEdit" name="lineEdit_5"/>
-          </item>
-          <item>
-           <widget class="QLineEdit" name="lineEdit_6"/>
+           <widget class="QLineEdit" name="gga_lon"/>
           </item>
          </layout>
         </item>
@@ -392,7 +386,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QLineEdit" name="lineEdit"/>
+           <widget class="QLineEdit" name="gga_utc"/>
           </item>
           <item>
            <widget class="QLabel" name="label_4">
@@ -402,7 +396,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QLineEdit" name="lineEdit_2"/>
+           <widget class="QLineEdit" name="gga_pfi"/>
           </item>
          </layout>
         </item>
@@ -423,7 +417,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QLineEdit" name="lineEdit_13"/>
+           <widget class="QLineEdit" name="gga_aod"/>
           </item>
          </layout>
         </item>
@@ -437,7 +431,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QLineEdit" name="lineEdit_7"/>
+           <widget class="QLineEdit" name="gga_su"/>
           </item>
           <item>
            <widget class="QLabel" name="label_6">
@@ -447,7 +441,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QLineEdit" name="lineEdit_8"/>
+           <widget class="QLineEdit" name="gga_hdop"/>
           </item>
          </layout>
         </item>
@@ -461,10 +455,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QLineEdit" name="lineEdit_9"/>
-          </item>
-          <item>
-           <widget class="QLineEdit" name="lineEdit_10"/>
+           <widget class="QLineEdit" name="gga_alt"/>
           </item>
           <item>
            <widget class="QLabel" name="label_8">
@@ -474,10 +465,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QLineEdit" name="lineEdit_11"/>
-          </item>
-          <item>
-           <widget class="QLineEdit" name="lineEdit_12"/>
+           <widget class="QLineEdit" name="gga_gs"/>
           </item>
          </layout>
         </item>

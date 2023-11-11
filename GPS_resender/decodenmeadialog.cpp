@@ -199,4 +199,46 @@ void DecodeNMEADialog::on_le_vtg_textChanged(const QString &arg1) {
 }
 
 void DecodeNMEADialog::on_le_gga_textChanged(const QString &arg1) {
+    QString temp = arg1;
+    temp.remove(0, temp.indexOf(',') + 1);
+    QString utcTime = temp.left(temp.indexOf(','));
+    temp.remove(0, temp.indexOf(',') + 1);
+    QString lat = temp.left(temp.indexOf(','));
+    temp.remove(0, temp.indexOf(',') + 1);
+    QString latIn = temp.left(temp.indexOf(','));
+    temp.remove(0, temp.indexOf(',') + 1);
+    QString lon = temp.left(temp.indexOf(','));
+    temp.remove(0, temp.indexOf(',') + 1);
+    QString lonIn = temp.left(temp.indexOf(','));
+    temp.remove(0, temp.indexOf(',') + 1);
+    QString pfix = temp.left(temp.indexOf(','));
+    temp.remove(0, temp.indexOf(',') + 1);
+    QString satU = temp.left(temp.indexOf(','));
+    temp.remove(0, temp.indexOf(',') + 1);
+    QString hdop = temp.left(temp.indexOf(','));
+    temp.remove(0, temp.indexOf(',') + 1);
+    QString alt = temp.left(temp.indexOf(','));
+    temp.remove(0, temp.indexOf(',') + 1);
+    temp.remove(0, temp.indexOf(',') + 1);
+    QString geo = temp.left(temp.indexOf(','));
+    temp.remove(0, temp.indexOf(',') + 1);
+    temp.remove(0, temp.indexOf(',') + 1);
+    QString aod = temp.left(temp.indexOf('*'));
+
+    ui->gga_utc->setText(utcTime);
+    ui->gga_lat->setText(lat + " " + latIn);
+    ui->gga_lon->setText(lon + " " + lonIn);
+    if (pfix == "0")
+        ui->gga_pfi->setText("0 - Fix not avaiable");
+    else if (pfix == "1")
+        ui->gga_pfi->setText("1 - GPS fix");
+    else if (pfix == "2")
+        ui->gga_pfi->setText("2 - Differential GPS fix");
+    else
+        ui->gga_pfi->setText("---");
+    ui->gga_su->setText(satU);
+    ui->gga_hdop->setText(hdop);
+    ui->gga_alt->setText(alt + " meters");
+    ui->gga_gs->setText(geo + " meters");
+    ui->gga_aod->setText(aod + " second");
 }
