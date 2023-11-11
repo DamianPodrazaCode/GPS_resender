@@ -183,4 +183,20 @@ void DecodeNMEADialog::on_le_vtg_textChanged(const QString &arg1) {
     temp.remove(0, temp.indexOf(',') + 1);
     temp.remove(0, temp.indexOf(',') + 1);
     QString mode = temp.left(temp.indexOf('*'));
+
+    ui->vtg_hid->setText(course_t + " degrees");
+    ui->vtg_mhid->setText(course_m + " degrees");
+    ui->vtg_s_k->setText(speed_k + " knots");
+    ui->vtg_s_km->setText(speed_km + " km/h");
+    if (mode == "A")
+        ui->vtg_mode->setText("A - Autonomous");
+    else if (mode == "D")
+        ui->vtg_mode->setText("D - Differential");
+    else if (mode == "E")
+        ui->vtg_mode->setText("E - Estimated");
+    else
+        ui->vtg_mode->setText("---");
+}
+
+void DecodeNMEADialog::on_le_gga_textChanged(const QString &arg1) {
 }
