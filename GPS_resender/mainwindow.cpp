@@ -329,3 +329,6 @@ void MainWindow::on_pb_decode_nmea_clicked() {
     dnd = new DecodeNMEADialog(this);
     dnd->show();
 }
+
+void MainWindow::on_pb_start_save_to_file_clicked() {
+}

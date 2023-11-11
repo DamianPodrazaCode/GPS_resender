@@ -278,7 +278,7 @@
           <item>
            <widget class="QLabel" name="label_25">
             <property name="text">
-             <string>Heading:</string>
+             <string>Course/T</string>
             </property>
            </widget>
           </item>
@@ -288,7 +288,7 @@
           <item>
            <widget class="QLabel" name="label_28">
             <property name="text">
-             <string>Magnetic heading:</string>
+             <string>Course/M</string>
             </property>
            </widget>
           </item>
@@ -352,31 +352,14 @@
         <string>$GPGGA</string>
        </property>
        <layout class="QGridLayout" name="gridLayout">
-        <item row="2" column="0">
-         <layout class="QHBoxLayout" name="horizontalLayout_2">
-          <item>
-           <widget class="QLabel" name="label_2">
-            <property name="text">
-             <string>Latitude:</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QLineEdit" name="gga_lat"/>
-          </item>
-          <item>
-           <widget class="QLabel" name="label_3">
-            <property name="text">
-             <string>Longitude:</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QLineEdit" name="gga_lon"/>
-          </item>
-         </layout>
+        <item row="0" column="0">
+         <widget class="QLineEdit" name="le_gga">
+          <property name="readOnly">
+           <bool>true</bool>
+          </property>
+         </widget>
         </item>
-        <item row="1" column="0">
+        <item row="1" column="0" colspan="2">
          <layout class="QHBoxLayout" name="horizontalLayout">
           <item>
            <widget class="QLabel" name="label">
@@ -400,28 +383,31 @@
           </item>
          </layout>
         </item>
-        <item row="0" column="0">
-         <widget class="QLineEdit" name="le_gga">
-          <property name="readOnly">
-           <bool>true</bool>
-          </property>
-         </widget>
-        </item>
-        <item row="5" column="0">
-         <layout class="QHBoxLayout" name="horizontalLayout_5">
+        <item row="2" column="0" colspan="2">
+         <layout class="QHBoxLayout" name="horizontalLayout_2">
           <item>
-           <widget class="QLabel" name="label_9">
+           <widget class="QLabel" name="label_2">
             <property name="text">
-             <string>Age of Diff. Corr.</string>
+             <string>Latitude:</string>
             </property>
            </widget>
           </item>
           <item>
-           <widget class="QLineEdit" name="gga_aod"/>
+           <widget class="QLineEdit" name="gga_lat"/>
+          </item>
+          <item>
+           <widget class="QLabel" name="label_3">
+            <property name="text">
+             <string>Longitude:</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="gga_lon"/>
           </item>
          </layout>
         </item>
-        <item row="3" column="0">
+        <item row="3" column="0" colspan="2">
          <layout class="QHBoxLayout" name="horizontalLayout_3">
           <item>
            <widget class="QLabel" name="label_5">
@@ -445,7 +431,7 @@
           </item>
          </layout>
         </item>
-        <item row="4" column="0">
+        <item row="4" column="0" colspan="2">
          <layout class="QHBoxLayout" name="horizontalLayout_4">
           <item>
            <widget class="QLabel" name="label_7">
@@ -466,6 +452,34 @@
           </item>
           <item>
            <widget class="QLineEdit" name="gga_gs"/>
+          </item>
+         </layout>
+        </item>
+        <item row="5" column="0">
+         <layout class="QHBoxLayout" name="horizontalLayout_5">
+          <item>
+           <widget class="QLabel" name="label_9">
+            <property name="text">
+             <string>DGS age:</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="gga_aod"/>
+          </item>
+         </layout>
+        </item>
+        <item row="5" column="1">
+         <layout class="QHBoxLayout" name="horizontalLayout_21">
+          <item>
+           <widget class="QLabel" name="label_26">
+            <property name="text">
+             <string>DGS id:</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="gga_aod_id"/>
           </item>
          </layout>
         </item>
@@ -511,7 +525,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QLineEdit" name="lineEdit_14"/>
+           <widget class="QLineEdit" name="gsa_m1"/>
           </item>
           <item>
            <widget class="QLabel" name="label_11">
@@ -521,7 +535,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QLineEdit" name="lineEdit_15"/>
+           <widget class="QLineEdit" name="gsa_m2"/>
           </item>
          </layout>
         </item>
@@ -535,7 +549,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QLineEdit" name="lineEdit_16"/>
+           <widget class="QLineEdit" name="gsa_su"/>
           </item>
          </layout>
         </item>
@@ -549,7 +563,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QLineEdit" name="lineEdit_17"/>
+           <widget class="QLineEdit" name="gsa_pdop"/>
           </item>
           <item>
            <widget class="QLabel" name="label_14">
@@ -559,7 +573,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QLineEdit" name="lineEdit_18"/>
+           <widget class="QLineEdit" name="gsa_hdop"/>
           </item>
           <item>
            <widget class="QLabel" name="label_15">
@@ -569,7 +583,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QLineEdit" name="lineEdit_19"/>
+           <widget class="QLineEdit" name="gsa_vdop"/>
           </item>
          </layout>
         </item>
@@ -722,7 +736,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QLineEdit" name="lineEdit_47"/>
+           <widget class="QLineEdit" name="zda_time"/>
           </item>
           <item>
            <widget class="QLabel" name="label_40">
@@ -732,7 +746,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QLineEdit" name="lineEdit_48"/>
+           <widget class="QLineEdit" name="zda_day"/>
           </item>
           <item>
            <widget class="QLabel" name="label_41">
@@ -742,7 +756,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QLineEdit" name="lineEdit_49"/>
+           <widget class="QLineEdit" name="zda_month"/>
           </item>
           <item>
            <widget class="QLabel" name="label_42">
@@ -752,7 +766,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QLineEdit" name="lineEdit_50"/>
+           <widget class="QLineEdit" name="zda_year"/>
           </item>
          </layout>
         </item>

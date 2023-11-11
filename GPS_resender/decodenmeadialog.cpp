@@ -147,7 +147,7 @@ void DecodeNMEADialog::on_le_rmc_textChanged(const QString &arg1) {
     if (stat == "A")
         ui->rmc_stat->setText("A - Data Valid");
     else if (stat == "V")
-        ui->rmc_stat->setText("A - Data Not Valid");
+        ui->rmc_stat->setText("V - Data Not Valid");
     else
         ui->rmc_stat->setText("---");
     ui->rmc_lat->setText(lat + " " + latIn);
@@ -223,7 +223,9 @@ void DecodeNMEADialog::on_le_gga_textChanged(const QString &arg1) {
     QString geo = temp.left(temp.indexOf(','));
     temp.remove(0, temp.indexOf(',') + 1);
     temp.remove(0, temp.indexOf(',') + 1);
-    QString aod = temp.left(temp.indexOf('*'));
+    QString aod = temp.left(temp.indexOf(','));
+    temp.remove(0, temp.indexOf(',') + 1);
+    QString aodId = temp.left(temp.indexOf('*'));
 
     ui->gga_utc->setText(utcTime);
     ui->gga_lat->setText(lat + " " + latIn);
@@ -240,5 +242,83 @@ void DecodeNMEADialog::on_le_gga_textChanged(const QString &arg1) {
     ui->gga_hdop->setText(hdop);
     ui->gga_alt->setText(alt + " meters");
     ui->gga_gs->setText(geo + " meters");
-    ui->gga_aod->setText(aod + " second");
+    ui->gga_aod->setText(aod);
+    ui->gga_aod_id->setText(aodId);
+}
+
+void DecodeNMEADialog::on_le_gsa_textChanged(const QString &arg1) {
+    QString temp = arg1;
+    temp.remove(0, temp.indexOf(',') + 1);
+    QString mode1 = temp.left(temp.indexOf(','));
+    temp.remove(0, temp.indexOf(',') + 1);
+    QString mode2 = temp.left(temp.indexOf(','));
+    temp.remove(0, temp.indexOf(',') + 1);
+    QString s1 = temp.left(temp.indexOf(','));
+    temp.remove(0, temp.indexOf(',') + 1);
+    QString s2 = temp.left(temp.indexOf(','));
+    temp.remove(0, temp.indexOf(',') + 1);
+    QString s3 = temp.left(temp.indexOf(','));
+    temp.remove(0, temp.indexOf(',') + 1);
+    QString s4 = temp.left(temp.indexOf(','));
+    temp.remove(0, temp.indexOf(',') + 1);
+    QString s5 = temp.left(temp.indexOf(','));
+    temp.remove(0, temp.indexOf(',') + 1);
+    QString s6 = temp.left(temp.indexOf(','));
+    temp.remove(0, temp.indexOf(',') + 1);
+    QString s7 = temp.left(temp.indexOf(','));
+    temp.remove(0, temp.indexOf(',') + 1);
+    QString s8 = temp.left(temp.indexOf(','));
+    temp.remove(0, temp.indexOf(',') + 1);
+    QString s9 = temp.left(temp.indexOf(','));
+    temp.remove(0, temp.indexOf(',') + 1);
+    QString s10 = temp.left(temp.indexOf(','));
+    temp.remove(0, temp.indexOf(',') + 1);
+    QString s11 = temp.left(temp.indexOf(','));
+    temp.remove(0, temp.indexOf(',') + 1);
+    QString s12 = temp.left(temp.indexOf(','));
+    temp.remove(0, temp.indexOf(',') + 1);
+    QString pdop = temp.left(temp.indexOf(','));
+    temp.remove(0, temp.indexOf(',') + 1);
+    QString hdop = temp.left(temp.indexOf(','));
+    temp.remove(0, temp.indexOf(',') + 1);
+    QString vdop = temp.left(temp.indexOf('*'));
+
+    if (mode1 == "M")
+        ui->gsa_m1->setText("M - Manual");
+    else if (mode1 == "A")
+        ui->gsa_m1->setText("A - 2D Automatic");
+    else
+        ui->gsa_m1->setText("---");
+
+    if (mode2 == "1")
+        ui->gsa_m2->setText("1 - Fix not avaiable");
+    else if (mode2 == "2")
+        ui->gsa_m2->setText("2 - 2D (<4 svS USED)");
+    else if (mode2 == "3")
+        ui->gsa_m2->setText("3 - 3D (>=4 svS USED)");
+    else
+        ui->gsa_m2->setText("---");
+
+    ui->gsa_su->setText("1-" + s1 + " 2-" + s2 + " 3-" + s3 + " 4-" + s4 + " 5-" + s5 + " 6-" + s6 + //
+                        " 7-" + s7 + " 8-" + s8 + " 9-" + s9 + " 10-" + s10 + " 11-" + s11 + " 12-" + s12);
+    ui->gsa_pdop->setText(pdop);
+    ui->gsa_hdop->setText(hdop);
+    ui->gsa_vdop->setText(vdop);
+}
+
+void DecodeNMEADialog::on_le_zda_textChanged(const QString &arg1) {
+    QString temp = arg1;
+    temp.remove(0, temp.indexOf(',') + 1);
+    QString time = temp.left(temp.indexOf(','));
+    temp.remove(0, temp.indexOf(',') + 1);
+    QString day = temp.left(temp.indexOf(','));
+    temp.remove(0, temp.indexOf(',') + 1);
+    QString month = temp.left(temp.indexOf(','));
+    temp.remove(0, temp.indexOf(',') + 1);
+    QString year = temp.left(temp.indexOf(','));
+
+    ui->zda_time->setText(time);
+    ui->zda_day->setText(day);
+    ui->zda_month->setText(month);
+    ui->zda_year->setText(year);
 }
