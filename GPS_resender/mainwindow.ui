@@ -1052,6 +1052,9 @@
            <property name="text">
             <string>Start SAVE to file</string>
            </property>
+           <property name="checkable">
+            <bool>true</bool>
+           </property>
           </widget>
          </item>
         </layout>

@@ -8,6 +8,8 @@
 #include <QSerialPortInfo>
 #include <QSettings>
 #include <QThread>
+#include <QFile>
+#include <QFileDialog>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -59,6 +61,10 @@ private slots:
     void on_pb_GNS_mode_clicked();
 
     void on_pb_decode_nmea_clicked();
+
+    void on_pb_start_save_to_file_clicked();
+
+    void on_pb_start_save_to_file_toggled(bool checked);
 
 private:
     QString getSettings(QString group, QString key);

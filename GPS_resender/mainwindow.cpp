@@ -332,3 +332,12 @@ void MainWindow::on_pb_decode_nmea_clicked() {
 
 void MainWindow::on_pb_start_save_to_file_clicked() {
 }
+
+void MainWindow::on_pb_start_save_to_file_toggled(bool checked) {
+    if (checked) {
+        QString path = QFileDialog::getSaveFileName(this, "Save Filename");
+        ui->pb_start_save_to_file->setText("Stop SAVE");
+    } else {
+        ui->pb_start_save_to_file->setText("Start SAVE to file");
+    }
+}
