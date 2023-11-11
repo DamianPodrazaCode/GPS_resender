@@ -63,10 +63,10 @@
            </widget>
           </item>
           <item>
-           <widget class="QLineEdit" name="lineEdit_43"/>
+           <widget class="QLineEdit" name="gll_lat"/>
           </item>
           <item>
-           <widget class="QLineEdit" name="lineEdit_41"/>
+           <widget class="QLineEdit" name="gll_lat_in"/>
           </item>
           <item>
            <widget class="QLabel" name="label_35">
@@ -76,10 +76,10 @@
            </widget>
           </item>
           <item>
-           <widget class="QLineEdit" name="lineEdit_42"/>
+           <widget class="QLineEdit" name="gll_lon"/>
           </item>
           <item>
-           <widget class="QLineEdit" name="lineEdit_40"/>
+           <widget class="QLineEdit" name="gll_lon_in"/>
           </item>
          </layout>
         </item>
@@ -93,7 +93,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QLineEdit" name="lineEdit_44"/>
+           <widget class="QLineEdit" name="gll_utc"/>
           </item>
           <item>
            <widget class="QLabel" name="label_37">
@@ -103,7 +103,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QLineEdit" name="lineEdit_45"/>
+           <widget class="QLineEdit" name="gll_stat"/>
           </item>
           <item>
            <widget class="QLabel" name="label_38">
@@ -113,7 +113,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QLineEdit" name="lineEdit_46"/>
+           <widget class="QLineEdit" name="gll_mode"/>
           </item>
          </layout>
         </item>
