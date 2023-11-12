@@ -344,36 +344,42 @@ void MainWindow::on_pb_start_save_to_file_toggled(bool checked) {
             if (ui->cb_out_gga->currentIndex() == 0) {
                 ui->cb_out_gga->setCurrentIndex(1);
                 on_pb_out_set_clicked();
+                GpsMarker = "GPGGA";
             }
             break;
         case 1:
             if (ui->cb_out_gll->currentIndex() == 0) {
                 ui->cb_out_gll->setCurrentIndex(1);
                 on_pb_out_set_clicked();
+                GpsMarker = "GPGLL";
             }
             break;
         case 2:
             if (ui->cb_out_rmc->currentIndex() == 0) {
                 ui->cb_out_rmc->setCurrentIndex(1);
                 on_pb_out_set_clicked();
+                GpsMarker = "GPRMC";
             }
             break;
         case 3:
             if (ui->cb_out_vtg->currentIndex() == 0) {
                 ui->cb_out_vtg->setCurrentIndex(1);
                 on_pb_out_set_clicked();
+                GpsMarker = "GPVTG";
             }
             break;
         case 4:
             if (ui->cb_out_gsa->currentIndex() == 0) {
                 ui->cb_out_gsa->setCurrentIndex(1);
                 on_pb_out_set_clicked();
+                GpsMarker = "GPGSA";
             }
             break;
         case 5:
             if (ui->cb_out_gsv->currentIndex() == 0) {
                 ui->cb_out_gsv->setCurrentIndex(1);
                 on_pb_out_set_clicked();
+                GpsMarker = "GPGSV";
             }
             break;
         default:
