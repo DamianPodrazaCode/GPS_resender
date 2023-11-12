@@ -352,13 +352,6 @@
         <string>$GPGGA</string>
        </property>
        <layout class="QGridLayout" name="gridLayout">
-        <item row="0" column="0">
-         <widget class="QLineEdit" name="le_gga">
-          <property name="readOnly">
-           <bool>true</bool>
-          </property>
-         </widget>
-        </item>
         <item row="1" column="0" colspan="2">
          <layout class="QHBoxLayout" name="horizontalLayout">
           <item>
@@ -482,6 +475,13 @@
            <widget class="QLineEdit" name="gga_aod_id"/>
           </item>
          </layout>
+        </item>
+        <item row="0" column="0" colspan="2">
+         <widget class="QLineEdit" name="le_gga">
+          <property name="readOnly">
+           <bool>true</bool>
+          </property>
+         </widget>
         </item>
        </layout>
       </widget>
@@ -646,8 +646,11 @@
           </item>
           <item>
            <widget class="QPushButton" name="pushButton">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
             <property name="text">
-             <string>Satelite in View GPS:</string>
+             <string>Satelite GPS</string>
             </property>
            </widget>
           </item>
@@ -691,8 +694,11 @@
           </item>
           <item>
            <widget class="QPushButton" name="pushButton_2">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
             <property name="text">
-             <string>Satelite in View Glonass:</string>
+             <string>Satelite Glonass:</string>
             </property>
            </widget>
           </item>

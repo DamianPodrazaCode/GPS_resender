@@ -82,6 +82,9 @@ void MainWindow::read_data() {
                     ui->pte_PMTK_answer->appendPlainText(lineShow);
                 } else {
                     ui->pte_term->appendPlainText(lineShow);
+                    if (fSaveStrem) {
+                        strem << lineShow << "\n";
+                    }
                 }
                 if (lineShow.contains("GPGLL") & (dnd != nullptr))
                     dnd->setGLL(lineShow);
@@ -335,9 +338,59 @@ void MainWindow::on_pb_start_save_to_file_clicked() {
 
 void MainWindow::on_pb_start_save_to_file_toggled(bool checked) {
     if (checked) {
+        GpsFileFrameCounter = ui->le_number_frames_in_file->text().toInt();
+        switch (ui->cb_marker_file->currentIndex()) {
+        case 0:
+            if (ui->cb_out_gga->currentIndex() == 0) {
+                ui->cb_out_gga->setCurrentIndex(1);
+                on_pb_out_set_clicked();
+            }
+            break;
+        case 1:
+            if (ui->cb_out_gll->currentIndex() == 0) {
+                ui->cb_out_gll->setCurrentIndex(1);
+                on_pb_out_set_clicked();
+            }
+            break;
+        case 2:
+            if (ui->cb_out_rmc->currentIndex() == 0) {
+                ui->cb_out_rmc->setCurrentIndex(1);
+                on_pb_out_set_clicked();
+            }
+            break;
+        case 3:
+            if (ui->cb_out_vtg->currentIndex() == 0) {
+                ui->cb_out_vtg->setCurrentIndex(1);
+                on_pb_out_set_clicked();
+            }
+            break;
+        case 4:
+            if (ui->cb_out_gsa->currentIndex() == 0) {
+                ui->cb_out_gsa->setCurrentIndex(1);
+                on_pb_out_set_clicked();
+            }
+            break;
+        case 5:
+            if (ui->cb_out_gsv->currentIndex() == 0) {
+                ui->cb_out_gsv->setCurrentIndex(1);
+                on_pb_out_set_clicked();
+            }
+            break;
+        default:
+            break;
+        }
         QString path = QFileDialog::getSaveFileName(this, "Save Filename");
+        file.setFileName(path);
+        if (!file.open(QIODeviceBase::WriteOnly)) {
+            qInfo() << "file error";
+        }
+        strem.setDevice(&file);
+        strem.seek(0);
+        fSaveStrem = true;
         ui->pb_start_save_to_file->setText("Stop SAVE");
     } else {
+        fSaveStrem = false;
+        file.close();
         ui->pb_start_save_to_file->setText("Start SAVE to file");
     }
 }
