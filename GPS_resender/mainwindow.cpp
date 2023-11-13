@@ -394,7 +394,7 @@ void MainWindow::on_pb_start_save_to_file_toggled(bool checked) {
         default:
             break;
         }
-        QString path = QFileDialog::getSaveFileName(this, "Save Filename");
+        QString path = QFileDialog::getSaveFileName(this, "Save Filename", "000000.txt", tr("Text files (*.txt)"));
         file.setFileName(path);
         if (!file.open(QIODeviceBase::WriteOnly)) {
             qInfo() << "file error";
