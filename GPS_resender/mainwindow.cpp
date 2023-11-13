@@ -88,8 +88,15 @@ void MainWindow::read_data() {
                             if (GpsFileFrameCounter <= 0) {
                                 GpsFileCounter++;
                                 GpsFileFrameCounter = ui->le_number_frames_in_file->text().toInt();
+                                QString tempFilename = file.fileName().remove(ui->l_counter_files->text() + ".txt");
                                 ui->l_counter_files->setText(QString::number(GpsFileCounter).rightJustified(6, '0'));
-                                // zmiana pliku
+                                file.close();
+                                file.setFileName(tempFilename + ui->l_counter_files->text() + ".txt");
+                                if (!file.open(QIODeviceBase::WriteOnly)) {
+                                    qInfo() << "file error";
+                                }
+                                strem.setDevice(&file);
+                                strem.seek(0);
                             }
                         }
                         strem << lineShow << "\n";
