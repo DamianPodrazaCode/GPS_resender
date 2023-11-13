@@ -83,6 +83,7 @@ void MainWindow::read_data() {
                 } else {
                     ui->pte_term->appendPlainText(lineShow);
                     if (fSaveStrem) {
+                        strem << lineShow << "\n";
                         if (lineShow.contains(ui->cb_marker_file->currentText())) {
                             GpsFileFrameCounter--;
                             if (GpsFileFrameCounter <= 0) {
@@ -99,7 +100,6 @@ void MainWindow::read_data() {
                                 strem.seek(0);
                             }
                         }
-                        strem << lineShow << "\n";
                     }
                 }
                 if (lineShow.contains("GPGLL") & (dnd != nullptr))
