@@ -88,7 +88,7 @@ void MainWindow::read_data() {
                             if (GpsFileFrameCounter <= 0) {
                                 GpsFileCounter++;
                                 GpsFileFrameCounter = ui->le_number_frames_in_file->text().toInt();
-                                ui->l_counter_files->setText(QString::number(GpsFileCounter));
+                                ui->l_counter_files->setText(QString::number(GpsFileCounter).rightJustified(6, '0'));
                                 // zmiana pliku
                             }
                         }
