@@ -83,6 +83,15 @@ void MainWindow::read_data() {
                 } else {
                     ui->pte_term->appendPlainText(lineShow);
                     if (fSaveStrem) {
+                        if (lineShow.contains(ui->cb_marker_file->currentText())) {
+                            GpsFileFrameCounter--;
+                            if (GpsFileFrameCounter <= 0) {
+                                GpsFileCounter++;
+                                GpsFileFrameCounter = ui->le_number_frames_in_file->text().toInt();
+                                ui->l_counter_files->setText(QString::number(GpsFileCounter));
+                                // zmiana pliku
+                            }
+                        }
                         strem << lineShow << "\n";
                     }
                 }

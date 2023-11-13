@@ -72,6 +72,6 @@ private:
     QString GpsFileName = "GPS_******.txt";
     QString GpsMarker = "";
     uint32_t GpsFileCounter = 0;
-    uint32_t GpsFileFrameCounter = 10;
+    int GpsFileFrameCounter = 10;
 };
 #endif // MAINWINDOW_H

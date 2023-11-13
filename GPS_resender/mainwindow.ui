@@ -1166,6 +1166,11 @@
                 </item>
                 <item>
                  <property name="text">
+                  <string>GPRMC</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
                   <string>GPVTG</string>
                  </property>
                 </item>
