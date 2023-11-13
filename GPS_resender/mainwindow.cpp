@@ -21,6 +21,8 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     ui->cb_out_gsv->setCurrentIndex(getSettings("gps", "nmeaGSV").toInt());
     ui->cb_out_zda->setCurrentIndex(getSettings("gps", "nmeaZDA").toInt());
     ui->cb_out_chn->setCurrentIndex(getSettings("gps", "nmeaCHN").toInt());
+    ui->cb_marker_file->setCurrentIndex(getSettings("save", "marker").toInt());
+    ui->le_number_frames_in_file->setText(getSettings("save", "countFrames"));
 }
 
 MainWindow::~MainWindow() {
@@ -40,6 +42,8 @@ MainWindow::~MainWindow() {
     setSettings("gps", "nmeaGSV", QString::number(ui->cb_out_gsv->currentIndex()));
     setSettings("gps", "nmeaZDA", QString::number(ui->cb_out_zda->currentIndex()));
     setSettings("gps", "nmeaCHN", QString::number(ui->cb_out_chn->currentIndex()));
+    setSettings("save", "marker", QString::number(ui->cb_marker_file->currentIndex()));
+    setSettings("save", "countFrames", ui->le_number_frames_in_file->text());
 
     if (COMPORT != nullptr) {
         disconnect(COMPORT, SIGNAL(readyRead()), this, SLOT(read_data()));
@@ -86,6 +90,7 @@ void MainWindow::read_data() {
                         strem << lineShow << "\n";
                         if (lineShow.contains(ui->cb_marker_file->currentText())) {
                             GpsFileFrameCounter--;
+                            // mechanizm zmiany plików
                             if (GpsFileFrameCounter <= 0) {
                                 GpsFileCounter++;
                                 GpsFileFrameCounter = ui->le_number_frames_in_file->text().toInt();
@@ -349,9 +354,6 @@ void MainWindow::on_pb_decode_nmea_clicked() {
     dnd->show();
 }
 
-void MainWindow::on_pb_start_save_to_file_clicked() {
-}
-
 void MainWindow::on_pb_start_save_to_file_toggled(bool checked) {
     if (checked) {
         GpsFileFrameCounter = ui->le_number_frames_in_file->text().toInt();
@@ -415,4 +417,19 @@ void MainWindow::on_pb_start_save_to_file_toggled(bool checked) {
         file.close();
         ui->pb_start_save_to_file->setText("Start SAVE to file");
     }
+}
+
+void MainWindow::on_bp_out_serial_clicked() {
+    OutSerial *out_serial = new OutSerial(this);
+    out_serial->show();
+}
+
+void MainWindow::on_pb_out_udp_clicked() {
+    OutUdp *out_udp = new OutUdp(this);
+    out_udp->show();
+}
+
+void MainWindow::on_pb_out_tcp_clicked() {
+    OutTcp *out_tcp = new OutTcp(this);
+    out_tcp->show();
 }

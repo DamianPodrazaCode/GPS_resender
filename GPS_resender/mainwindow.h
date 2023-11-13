@@ -2,6 +2,9 @@
 #define MAINWINDOW_H
 
 #include "decodenmeadialog.h"
+#include "outserial.h"
+#include "outtcp.h"
+#include "outudp.h"
 #include <QDebug>
 #include <QFile>
 #include <QFileDialog>
@@ -51,8 +54,10 @@ private slots:
     void on_pb_firm_clicked();
     void on_pb_GNS_mode_clicked();
     void on_pb_decode_nmea_clicked();
-    void on_pb_start_save_to_file_clicked();
     void on_pb_start_save_to_file_toggled(bool checked);
+    void on_bp_out_serial_clicked();
+    void on_pb_out_udp_clicked();
+    void on_pb_out_tcp_clicked();
 
 private:
     QString getSettings(QString group, QString key);
