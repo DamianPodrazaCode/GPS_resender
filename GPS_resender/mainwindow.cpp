@@ -441,7 +441,3 @@ void MainWindow::on_pb_out_udp_clicked() {
     out_udp->show();
 }
 
-void MainWindow::on_pb_out_tcp_clicked() {
-    out_tcp = new OutTcp(this);
-    out_tcp->show();
-}

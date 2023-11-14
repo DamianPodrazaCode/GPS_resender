@@ -3,7 +3,6 @@
 
 #include "decodenmeadialog.h"
 #include "outserial.h"
-#include "outtcp.h"
 #include "outudp.h"
 #include <QDebug>
 #include <QFile>
@@ -59,7 +58,6 @@ private slots:
     void on_pb_start_save_to_file_toggled(bool checked);
     void on_bp_out_serial_clicked();
     void on_pb_out_udp_clicked();
-    void on_pb_out_tcp_clicked();
 
 private:
     QString getSettings(QString group, QString key);
@@ -83,8 +81,6 @@ private:
 
     QUdpSocket *udpSocket;
     OutUdp *out_udp = nullptr;
-
-    OutTcp *out_tcp = nullptr;
 
 };
 #endif // MAINWINDOW_H

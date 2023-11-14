@@ -13,21 +13,18 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     outserial.cpp \
-    outtcp.cpp \
     outudp.cpp
 
 HEADERS += \
     decodenmeadialog.h \
     mainwindow.h \
     outserial.h \
-    outtcp.h \
     outudp.h
 
 FORMS += \
     decodenmeadialog.ui \
     mainwindow.ui \
     outserial.ui \
-    outtcp.ui \
     outudp.ui
 
 # Default rules for deployment.

@@ -516,13 +516,6 @@
            </property>
           </widget>
          </item>
-         <item>
-          <widget class="QPushButton" name="pb_out_tcp">
-           <property name="text">
-            <string>Out TCP</string>
-           </property>
-          </widget>
-         </item>
         </layout>
        </widget>
       </item>
