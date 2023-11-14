@@ -27,6 +27,8 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+    static bool fUdpStart;
+
 signals:
 
 private slots:

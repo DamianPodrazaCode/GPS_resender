@@ -4,6 +4,8 @@
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow) {
     ui->setupUi(this);
 
+    fUdpStart = false;
+
     fill_cb_serialInfo();
 
     ui->cb_serial_baud->setCurrentIndex(getSettings("serial", "BaudRate").toInt());
