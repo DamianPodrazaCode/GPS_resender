@@ -88,6 +88,14 @@ void MainWindow::read_data() {
                     ui->pte_PMTK_answer->appendPlainText(lineShow);
                 } else {
                     ui->pte_term->appendPlainText(lineShow);
+                    // wysyłanie na UDP
+                    if (fUdpStart) {
+                        QByteArray data = lineShow.toLatin1();
+                        QHostAddress ipAdress(ui->le_send_ip->text());
+                        uint16_t port = ui->le_send_port->text().toUInt();
+                        udpSocket->writeDatagram(data, ipAdress, port);
+                    }
+                    // zapis do pliku
                     if (fSaveStrem) {
                         strem << lineShow << "\n";
                         if (lineShow.contains(ui->cb_marker_file->currentText())) {
