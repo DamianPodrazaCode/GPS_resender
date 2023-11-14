@@ -7,8 +7,7 @@ namespace Ui {
 class OutTcp;
 }
 
-class OutTcp : public QDialog
-{
+class OutTcp : public QDialog {
     Q_OBJECT
 
 public:

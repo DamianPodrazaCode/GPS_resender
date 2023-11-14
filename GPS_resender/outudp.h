@@ -7,19 +7,18 @@ namespace Ui {
 class OutUdp;
 }
 
-class OutUdp : public QDialog
-{
+class OutUdp : public QDialog {
     Q_OBJECT
 
 public:
     explicit OutUdp(QWidget *parent = nullptr);
     ~OutUdp();
 
+    bool fUdpStart = false;
     QString ipAddr;
     uint16_t port;
 
 private slots:
-
 
     void on_pb_startUDP_clicked();
 

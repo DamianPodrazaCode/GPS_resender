@@ -13,9 +13,9 @@ OutUdp::~OutUdp() {
 void OutUdp::on_pb_startUDP_clicked() {
     ipAddr = ui->le_ip->text();
     port = ui->le_port->text().toInt();
-  //  MainWindow::fUdpStart = true;
+    fUdpStart = true;
 }
 
 void OutUdp::on_pb_stopUDP_clicked() {
-//    MainWindow::fUdpStart = false;
+    fUdpStart = false;
 }

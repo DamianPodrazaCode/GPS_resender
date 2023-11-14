@@ -1,14 +1,10 @@
 #include "outserial.h"
 #include "ui_outserial.h"
 
-OutSerial::OutSerial(QWidget *parent) :
-      QDialog(parent),
-      ui(new Ui::OutSerial)
-{
+OutSerial::OutSerial(QWidget *parent) : QDialog(parent), ui(new Ui::OutSerial) {
     ui->setupUi(this);
 }
 
-OutSerial::~OutSerial()
-{
+OutSerial::~OutSerial() {
     delete ui;
 }

@@ -14,8 +14,6 @@ public:
     explicit OutSerial(QWidget *parent = nullptr);
     ~OutSerial();
 
-    bool fUdpStart = false;
-
 private:
     Ui::OutSerial *ui;
 };
