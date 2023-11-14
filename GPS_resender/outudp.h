@@ -19,7 +19,11 @@ public:
     uint16_t port;
 
 private slots:
-    void on_pb_sendUDP_clicked();
+
+
+    void on_pb_startUDP_clicked();
+
+    void on_pb_stopUDP_clicked();
 
 private:
     Ui::OutUdp *ui;

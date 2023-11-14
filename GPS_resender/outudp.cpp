@@ -10,5 +10,12 @@ OutUdp::~OutUdp() {
     delete ui;
 }
 
-void OutUdp::on_pb_sendUDP_clicked() {
+void OutUdp::on_pb_startUDP_clicked() {
+    ipAddr = ui->le_ip->text();
+    port = ui->le_port->text().toInt();
+  //  MainWindow::fUdpStart = true;
+}
+
+void OutUdp::on_pb_stopUDP_clicked() {
+//    MainWindow::fUdpStart = false;
 }

@@ -7,13 +7,14 @@ namespace Ui {
 class OutSerial;
 }
 
-class OutSerial : public QDialog
-{
+class OutSerial : public QDialog {
     Q_OBJECT
 
 public:
     explicit OutSerial(QWidget *parent = nullptr);
     ~OutSerial();
+
+    bool fUdpStart = false;
 
 private:
     Ui::OutSerial *ui;

@@ -13,6 +13,8 @@
 #include <QSerialPortInfo>
 #include <QSettings>
 #include <QThread>
+#include <QNetworkDatagram>
+#include <QUdpSocket>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -26,8 +28,6 @@ class MainWindow : public QMainWindow {
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
-
-    static bool fUdpStart;
 
 signals:
 
@@ -80,5 +80,8 @@ private:
     QString GpsMarker = "";
     uint32_t GpsFileCounter = 0;
     int GpsFileFrameCounter = 10;
+
+    QUdpSocket *udpSocket;
+    OutUdp *out_udp = nullptr;
 };
 #endif // MAINWINDOW_H

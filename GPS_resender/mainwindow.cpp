@@ -4,7 +4,8 @@
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow) {
     ui->setupUi(this);
 
-    fUdpStart = false;
+    udpSocket = new QUdpSocket(this);
+    //fUdpStart = false;
 
     fill_cb_serialInfo();
 
@@ -91,8 +92,8 @@ void MainWindow::read_data() {
                     // wysyłanie na UDP
                     if (fUdpStart) {
                         QByteArray data = lineShow.toLatin1();
-                        QHostAddress ipAdress(ui->le_send_ip->text());
-                        uint16_t port = ui->le_send_port->text().toUInt();
+                        QHostAddress ipAdress(out_udp->ipAddr);
+                        uint16_t port = out_udp->port;
                         udpSocket->writeDatagram(data, ipAdress, port);
                     }
                     // zapis do pliku
@@ -435,7 +436,7 @@ void MainWindow::on_bp_out_serial_clicked() {
 }
 
 void MainWindow::on_pb_out_udp_clicked() {
-    OutUdp *out_udp = new OutUdp(this);
+    out_udp = new OutUdp(this);
     out_udp->show();
 }
 

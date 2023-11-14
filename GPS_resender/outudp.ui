@@ -24,7 +24,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QLineEdit" name="lineEdit">
+      <widget class="QLineEdit" name="le_ip">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
          <horstretch>0</horstretch>
@@ -36,6 +36,9 @@
          <width>0</width>
          <height>0</height>
         </size>
+       </property>
+       <property name="text">
+        <string>255.255.255.255</string>
        </property>
       </widget>
      </item>
@@ -51,7 +54,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QLineEdit" name="lineEdit_2">
+      <widget class="QLineEdit" name="le_port">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
          <horstretch>0</horstretch>
@@ -63,6 +66,9 @@
          <width>0</width>
          <height>0</height>
         </size>
+       </property>
+       <property name="text">
+        <string>3333</string>
        </property>
       </widget>
      </item>
@@ -84,9 +90,22 @@
       </spacer>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton">
+      <widget class="QPushButton" name="pb_startUDP">
        <property name="text">
-        <string>Start SEND</string>
+        <string>Start UDP</string>
+       </property>
+       <property name="checkable">
+        <bool>false</bool>
+       </property>
+       <property name="checked">
+        <bool>false</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pb_stopUDP">
+       <property name="text">
+        <string>Stop UDP</string>
        </property>
       </widget>
      </item>
