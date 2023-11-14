@@ -69,7 +69,6 @@ void MainWindow::setSettings(QString group, QString key, QString value) {
 
 void MainWindow::read_data() {
     if (COMPORT->isOpen()) {
-
         while (COMPORT->bytesAvailable()) {
             dataFromSerial.append(COMPORT->readAll());
         }
@@ -89,6 +88,7 @@ void MainWindow::read_data() {
                     ui->pte_PMTK_answer->appendPlainText(lineShow);
                 } else {
                     ui->pte_term->appendPlainText(lineShow);
+
                     // wysyłanie na UDP
                     if (out_udp != nullptr)
                         if (out_udp->fUdpStart) {
@@ -442,6 +442,6 @@ void MainWindow::on_pb_out_udp_clicked() {
 }
 
 void MainWindow::on_pb_out_tcp_clicked() {
-    OutTcp *out_tcp = new OutTcp(this);
+    out_tcp = new OutTcp(this);
     out_tcp->show();
 }
