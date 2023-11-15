@@ -35,7 +35,25 @@ void OutSerial::on_pb_scan_clicked() {
 }
 
 void OutSerial::on_pb_connect_clicked() {
+    COMPORT_OUT = new QSerialPort();
+    COMPORT_OUT->setPortName(ui->cb_ports->currentText());
+    COMPORT_OUT->setBaudRate(ui->cb_baudrate->currentText().toInt());
+    COMPORT_OUT->setParity((QSerialPort::Parity)ui->cb_parity->currentIndex());
+    COMPORT_OUT->setDataBits((QSerialPort::DataBits)ui->cb_databits->currentText().toInt());
+    COMPORT_OUT->setStopBits((QSerialPort::StopBits)(ui->cb_stpBits->currentText().toInt() + 1));
+    COMPORT_OUT->setFlowControl((QSerialPort::FlowControl)ui->cb_flowControl->currentIndex());
+    COMPORT_OUT->clearError();
+    COMPORT_OUT->open(QSerialPort::ReadWrite);
+    if (!COMPORT_OUT->isOpen()) {
+        COMPORT_OUT->close();
+        delete COMPORT_OUT;
+        close();
+    }
+    COMPORT_OUT->flush();
 }
 
 void OutSerial::on_pb_disconnect_clicked() {
+    COMPORT_OUT->close();
+    delete COMPORT_OUT;
+    COMPORT_OUT = nullptr;
 }

@@ -82,5 +82,7 @@ private:
     QUdpSocket *udpSocket;
     OutUdp *out_udp = nullptr;
 
+    OutSerial *out_serial = nullptr;
+
 };
 #endif // MAINWINDOW_H

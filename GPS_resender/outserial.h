@@ -16,12 +16,15 @@ public:
     explicit OutSerial(QWidget *parent = nullptr);
     ~OutSerial();
 
+    QSerialPort *COMPORT_OUT = nullptr;
+
 private slots:
     void on_pb_scan_clicked();
+    void on_pb_connect_clicked();
+    void on_pb_disconnect_clicked();
 
 private:
     Ui::OutSerial *ui;
-    QSerialPort *COMPORT_OUT = nullptr;
     QStringList portInfoList;
     void fill_cb_serialInfo();
 };

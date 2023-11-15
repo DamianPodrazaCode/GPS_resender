@@ -89,6 +89,13 @@ void MainWindow::read_data() {
                 } else {
                     ui->pte_term->appendPlainText(lineShow);
 
+                    // wysyłanie na serial
+                    if (out_serial != nullptr) {
+                        if (out_serial->COMPORT_OUT != nullptr)
+                            if (out_serial->COMPORT_OUT->isOpen())
+                                out_serial->COMPORT_OUT->write(lineShow.toLatin1());
+                    }
+
                     // wysyłanie na UDP
                     if (out_udp != nullptr)
                         if (out_udp->fUdpStart) {
@@ -151,7 +158,7 @@ void MainWindow::fill_cb_serialInfo() {
                             + portInfo.serialNumber() + ";" + QString::number(portInfo.productIdentifier(), 16) + ";"
                             + QString::number(portInfo.vendorIdentifier(), 16) + ";" + portInfo.systemLocation());
 
-               // sprawdzenie czyu port otwarty, jeżeli nie to dodanie do listy możliwych portów
+        // sprawdzenie czyu port otwarty, jeżeli nie to dodanie do listy możliwych portów
         QSerialPort *COMPORT = new QSerialPort();
         COMPORT->setPortName(portInfo.portName());
         COMPORT->clearError();
@@ -432,7 +439,7 @@ void MainWindow::on_pb_start_save_to_file_toggled(bool checked) {
 }
 
 void MainWindow::on_bp_out_serial_clicked() {
-    OutSerial *out_serial = new OutSerial(this);
+    out_serial = new OutSerial(this);
     out_serial->show();
 }
 
@@ -440,4 +447,3 @@ void MainWindow::on_pb_out_udp_clicked() {
     out_udp = new OutUdp(this);
     out_udp->show();
 }
-
