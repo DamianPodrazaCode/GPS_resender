@@ -29,3 +29,13 @@ void OutSerial::fill_cb_serialInfo() {
         delete COMPORT_OUT;
     }
 }
+
+void OutSerial::on_pb_scan_clicked() {
+    fill_cb_serialInfo();
+}
+
+void OutSerial::on_pb_connect_clicked() {
+}
+
+void OutSerial::on_pb_disconnect_clicked() {
+}

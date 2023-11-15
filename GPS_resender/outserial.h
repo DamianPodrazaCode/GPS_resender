@@ -16,6 +16,9 @@ public:
     explicit OutSerial(QWidget *parent = nullptr);
     ~OutSerial();
 
+private slots:
+    void on_pb_scan_clicked();
+
 private:
     Ui::OutSerial *ui;
     QSerialPort *COMPORT_OUT = nullptr;
