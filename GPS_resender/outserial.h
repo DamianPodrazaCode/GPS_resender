@@ -2,6 +2,8 @@
 #define OUTSERIAL_H
 
 #include <QDialog>
+#include <QSerialPort>
+#include <QSerialPortInfo>
 
 namespace Ui {
 class OutSerial;
@@ -16,6 +18,9 @@ public:
 
 private:
     Ui::OutSerial *ui;
+    QSerialPort *COMPORT_OUT = nullptr;
+    QStringList portInfoList;
+    void fill_cb_serialInfo();
 };
 
 #endif // OUTSERIAL_H

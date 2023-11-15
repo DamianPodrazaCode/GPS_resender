@@ -151,7 +151,7 @@ void MainWindow::fill_cb_serialInfo() {
                             + portInfo.serialNumber() + ";" + QString::number(portInfo.productIdentifier(), 16) + ";"
                             + QString::number(portInfo.vendorIdentifier(), 16) + ";" + portInfo.systemLocation());
 
-        // sprawdzenie czyu port otwarty, jeżeli nie to dodanie do listy możliwych portów
+               // sprawdzenie czyu port otwarty, jeżeli nie to dodanie do listy możliwych portów
         QSerialPort *COMPORT = new QSerialPort();
         COMPORT->setPortName(portInfo.portName());
         COMPORT->clearError();

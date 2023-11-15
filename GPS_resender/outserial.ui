@@ -17,14 +17,14 @@
    <item row="0" column="0">
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
-      <widget class="QPushButton" name="pushButton">
+      <widget class="QPushButton" name="pb_scan">
        <property name="text">
-        <string>Scan Serial</string>
+        <string>Scan Ports</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QComboBox" name="comboBox">
+      <widget class="QComboBox" name="cb_ports">
        <property name="sizeAdjustPolicy">
         <enum>QComboBox::AdjustToContents</enum>
        </property>
@@ -42,7 +42,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QComboBox" name="comboBox_2">
+      <widget class="QComboBox" name="cb_baudrate">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
          <horstretch>0</horstretch>
@@ -72,7 +72,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QComboBox" name="comboBox_3">
+      <widget class="QComboBox" name="cb_databits">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
          <horstretch>0</horstretch>
@@ -102,7 +102,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QComboBox" name="comboBox_4">
+      <widget class="QComboBox" name="cb_flowControl">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
          <horstretch>0</horstretch>
@@ -132,7 +132,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QComboBox" name="comboBox_5">
+      <widget class="QComboBox" name="cb_parity">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
          <horstretch>0</horstretch>
@@ -162,7 +162,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QComboBox" name="comboBox_6">
+      <widget class="QComboBox" name="cb_stpBits">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
          <horstretch>0</horstretch>
@@ -198,14 +198,14 @@
       </spacer>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton_2">
+      <widget class="QPushButton" name="pb_connect">
        <property name="text">
         <string>Connect</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton_3">
+      <widget class="QPushButton" name="pb_disconnect">
        <property name="text">
         <string>Disconnect</string>
        </property>
