@@ -35,6 +35,8 @@ void OutSerial::on_pb_scan_clicked() {
 }
 
 void OutSerial::on_pb_connect_clicked() {
+    ui->pb_connect->setDisabled(true);
+    ui->pb_disconnect->setEnabled(true);
     COMPORT_OUT = new QSerialPort();
     COMPORT_OUT->setPortName(ui->cb_ports->currentText());
     COMPORT_OUT->setBaudRate(ui->cb_baudrate->currentText().toInt());
@@ -53,7 +55,16 @@ void OutSerial::on_pb_connect_clicked() {
 }
 
 void OutSerial::on_pb_disconnect_clicked() {
+    ui->pb_connect->setEnabled(true);
+    ui->pb_disconnect->setDisabled(true);
     COMPORT_OUT->close();
-    delete COMPORT_OUT;
     COMPORT_OUT = nullptr;
+}
+
+void OutSerial::on_OutSerial_rejected() {
+    if (COMPORT_OUT != nullptr)
+        if (COMPORT_OUT->isOpen()) {
+            COMPORT_OUT->close();
+            COMPORT_OUT = nullptr;
+        }
 }
